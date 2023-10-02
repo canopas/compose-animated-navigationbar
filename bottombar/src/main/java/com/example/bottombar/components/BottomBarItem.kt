@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import com.example.bottombar.utils.VisibleItem
 
 @Composable
-fun RowScope.IconTextAnimator(
+fun RowScope.BottomBarItem(
     modifier: Modifier = Modifier,
     selected: Boolean,
     onClick: () -> Unit,
@@ -43,7 +43,7 @@ fun RowScope.IconTextAnimator(
     textColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     label: String,
     visibleItem: VisibleItem = VisibleItem.LABEL
-) = IconTextAnimator(
+) = NavigationBarItem(
     modifier,
     selected,
     onClick,
@@ -57,7 +57,7 @@ fun RowScope.IconTextAnimator(
 )
 
 @Composable
-fun RowScope.IconTextAnimator(
+fun RowScope.BottomBarItem(
     modifier: Modifier = Modifier,
     selected: Boolean,
     onClick: () -> Unit,
@@ -68,7 +68,7 @@ fun RowScope.IconTextAnimator(
     textColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     label: String,
     visibleItem: VisibleItem = VisibleItem.LABEL
-) = IconTextAnimator(
+) = NavigationBarItem(
     modifier,
     selected,
     onClick,
@@ -82,7 +82,7 @@ fun RowScope.IconTextAnimator(
 )
 
 @Composable
-fun RowScope.IconTextAnimator(
+fun RowScope.NavigationBarItem(
     modifier: Modifier = Modifier,
     selected: Boolean,
     onClick: () -> Unit,

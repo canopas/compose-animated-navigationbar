@@ -20,9 +20,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.animatedbottombarcompose.ui.theme.AnimatedBottomBarComposeTheme
-import com.example.bottombar.BottomBarWithTabIndicator
-import com.example.bottombar.components.IconTextAnimator
-import com.example.bottombar.model.MainNavigation
+import com.example.bottombar.AnimatedBottomBar
+import com.example.bottombar.components.BottomBarItem
+import com.example.animatedbottombarcompose.model.MainNavigation
 
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -41,12 +41,12 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(
                     bottomBar = {
-                        BottomBarWithTabIndicator(
+                        AnimatedBottomBar(
                             selectedItem = selectedItem,
                             itemSize = navigationItems.size
                         ) {
                             navigationItems.forEachIndexed { index, navigationItem ->
-                                IconTextAnimator(
+                                BottomBarItem(
                                     selected = currentRoute == navigationItem.route,
                                     onClick = {
                                         if (currentRoute != navigationItem.route) {

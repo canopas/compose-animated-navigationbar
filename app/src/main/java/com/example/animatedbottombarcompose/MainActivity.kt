@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -63,7 +64,7 @@ class MainActivity : ComponentActivity() {
                                             }
                                         }
                                     },
-                                    imageVector = navigationItem.icon,
+                                    icon = rememberVectorPainter(image = navigationItem.icon),
                                     label = navigationItem.title
                                 )
                             }

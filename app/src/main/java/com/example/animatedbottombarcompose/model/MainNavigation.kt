@@ -1,4 +1,4 @@
-package com.example.bottombar.model
+package com.example.animatedbottombarcompose.model
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email

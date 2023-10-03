@@ -22,6 +22,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.animatedbottombarcompose.ui.theme.AnimatedBottomBarComposeTheme
@@ -52,7 +54,9 @@ class MainActivity : ComponentActivity() {
                     bottomBar = {
                         AnimatedBottomBar(
                             selectedItem = selectedItem,
-                            itemSize = navigationItems.size
+                            itemSize = navigationItems.size,
+                            containerColor = Color.LightGray,
+                            indicatorStyle = IndicatorStyle.LINE
                         ) {
                             navigationItems.forEachIndexed { index, navigationItem ->
                                 BottomBarItem(
@@ -73,7 +77,8 @@ class MainActivity : ComponentActivity() {
                                         }
                                     },
                                     imageVector = navigationItem.icon,
-                                    label = navigationItem.title
+                                    label = navigationItem.title,
+                                    containerColor = Color.Transparent
                                 )
                             }
                         }
@@ -84,7 +89,7 @@ class MainActivity : ComponentActivity() {
                         startDestination = MainNavigation.ScreenA.route
                     ) {
                         composable(MainNavigation.ScreenA.route) {
-                            HomeScreen()
+                            HomeScreen(navigationItems)
                         }
                         composable(MainNavigation.ScreenB.route) {
                             NotificationsScreen()
@@ -103,7 +108,8 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navigationItems: List<MainNavigation>) {
+    var selectedItem by remember { mutableIntStateOf(0) }
     Column(
         modifier = Modifier
             .fillMaxSize()

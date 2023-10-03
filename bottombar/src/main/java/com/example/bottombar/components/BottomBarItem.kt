@@ -1,6 +1,5 @@
 package com.example.bottombar.components
 
-import androidx.annotation.DrawableRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.tween
@@ -24,69 +23,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.bottombar.utils.VisibleItem
 
 @Composable
-fun RowScope.IconTextAnimator(
+fun RowScope.BottomBarItem(
     modifier: Modifier = Modifier,
     selected: Boolean,
     onClick: () -> Unit,
-    @DrawableRes iconResource: Int,
-    containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
-    contentColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
-    iconColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
-    textColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
-    label: String,
-    visibleItem: VisibleItem = VisibleItem.LABEL
-) = IconTextAnimator(
-    modifier,
-    selected,
-    onClick,
-    painterResource(id = iconResource),
-    containerColor,
-    contentColor,
-    iconColor,
-    textColor,
-    label,
-    visibleItem
-)
-
-@Composable
-fun RowScope.IconTextAnimator(
-    modifier: Modifier = Modifier,
-    selected: Boolean,
-    onClick: () -> Unit,
-    imageVector: ImageVector,
-    containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
-    contentColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
-    iconColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
-    textColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
-    label: String,
-    visibleItem: VisibleItem = VisibleItem.LABEL
-) = IconTextAnimator(
-    modifier,
-    selected,
-    onClick,
-    rememberVectorPainter(image = imageVector),
-    containerColor,
-    contentColor,
-    iconColor,
-    textColor,
-    label,
-    visibleItem
-)
-
-@Composable
-fun RowScope.IconTextAnimator(
-    modifier: Modifier = Modifier,
-    selected: Boolean,
-    onClick: () -> Unit,
-    iconPainter: Painter,
+    icon: Painter,
     containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
     contentColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     iconColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -127,7 +73,7 @@ fun RowScope.IconTextAnimator(
                 ) { fullHeight -> -fullHeight } + fadeOut()
             ) {
                 Icon(
-                    painter = iconPainter,
+                    painter = icon,
                     contentDescription = null,
                     tint = iconColor
                 )

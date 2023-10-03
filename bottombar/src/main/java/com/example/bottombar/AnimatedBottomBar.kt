@@ -29,7 +29,7 @@ import com.example.bottombar.utils.conditional
 val DEFAULT_INDICATOR_HEIGHT = 4.dp
 
 @Composable
-fun BottomBarWithTabIndicator(
+fun AnimatedBottomBar(
     modifier: Modifier = Modifier,
     bottomBarHeight: Dp = 64.dp,
     containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
@@ -76,7 +76,7 @@ fun BottomBarWithTabIndicator(
 
                     ActiveTabIndicator(
                         indicatorOffset = indicatorOffset,
-                        arraySize = itemSize,
+                        arraySize = itemSize.takeIf { it != 0 } ?: 1,
                         indicatorHeight = indicatorHeight,
                         indicatorColor = indicatorColor,
                         modifier = Modifier

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="deploymentTargetDropDown">
+    <runningDeviceTargetSelectedWithDropDown>
+      <Target>
+        <type value="RUNNING_DEVICE_TARGET" />
+        <deviceKey>
+          <Key>
+            <type value="VIRTUAL_DEVICE_PATH" />
+            <value value="$USER_HOME$/.android/avd/Pixel_3_API_30_-_Play_Store.avd" />
+          </Key>
+        </deviceKey>
+      </Target>
+    </runningDeviceTargetSelectedWithDropDown>
     <targetSelectedWithDropDown>
       <Target>
         <type value="QUICK_BOOT_TARGET" />
@@ -12,6 +23,6 @@
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2023-09-29T10:29:01.738342008Z" />
+    <timeTargetWasSelectedWithDropDown value="2023-10-02T11:13:57.347145337Z" />
   </component>
 </project>

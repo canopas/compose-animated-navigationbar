@@ -48,15 +48,14 @@ class MainActivity : ComponentActivity() {
                 }
                 var selectedItem by remember { mutableIntStateOf(0) }
 
-                /*Scaffold(
+                Scaffold(
                     bottomBar = {
-                        BottomBarWithTabIndicator(
+                        AnimatedBottomBar(
                             selectedItem = selectedItem,
-                            itemSize = navigationItems.size,
-                            indicatorStyle = IndicatorStyle.LINE
+                            itemSize = navigationItems.size
                         ) {
                             navigationItems.forEachIndexed { index, navigationItem ->
-                                IconTextAnimator(
+                                BottomBarItem(
                                     selected = currentRoute == navigationItem.route,
                                     onClick = {
                                         if (currentRoute != navigationItem.route) {
@@ -75,37 +74,6 @@ class MainActivity : ComponentActivity() {
                                     },
                                     imageVector = navigationItem.icon,
                                     label = navigationItem.title
-                                )
-                            }
-                        }
-                        BottomBarWithTabIndicator(
-                            selectedItem = selectedItem,
-                            itemSize = navigationItems.size
-                        ) {
-                            navigationItems.forEachIndexed { index, navigationItem ->
-                                val selected = currentRoute == navigationItem.route
-                                BottomBarItem(
-                                    selected = selected,
-                                    onClick = {
-                                        if (currentRoute != navigationItem.route) {
-                                            selectedItem = index
-                                            navController.popBackStack()
-                                            navController.navigate(navigationItem.route) {
-                                                navController.graph.startDestinationRoute?.let { screen_route ->
-                                                    popUpTo(screen_route) {
-                                                        saveState = true
-                                                    }
-                                                }
-                                                launchSingleTop = true
-                                                restoreState = true
-                                            }
-                                        }
-                                    },
-                                    imageVector = navigationItem.icon,
-                                    label = navigationItem.title,
-                                    indicatorStyle = IndicatorStyle.FILLED,
-                                    iconColor = if (selected) Color.White else Color.Black,
-                                    textColor = if (selected) Color.White else Color.Black,
                                 )
                             }
                         }
@@ -128,182 +96,6 @@ class MainActivity : ComponentActivity() {
                             EmailsScreen()
                         }
                     }
-                }*/
-
-                Scaffold {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .verticalScroll(rememberScrollState())
-                    ) {
-
-                        Spacer(modifier = Modifier.height(50.dp))
-
-                        AnimatedBottomBar(
-                            selectedItem = selectedItem,
-                            itemSize = navigationItems.size,
-                            indicatorStyle = IndicatorStyle.LINE
-                        ) {
-                            navigationItems.forEachIndexed { index, navigationItem ->
-                                val selected = index == selectedItem
-                                BottomBarItem(
-                                    selected = selected,
-                                    onClick = {
-                                        selectedItem = index
-                                    },
-                                    imageVector = navigationItem.icon,
-                                    label = navigationItem.title,
-                                    iconColor = if (selected) Color.White else Color.Black,
-                                    textColor = if (selected) Color.White else Color.Black
-                                )
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(50.dp))
-
-                        AnimatedBottomBar(
-                            selectedItem = selectedItem,
-                            itemSize = navigationItems.size,
-                            indicatorStyle = IndicatorStyle.LINE,
-                            indicatorDirection = IndicatorDirection.BOTTOM
-                        ) {
-                            navigationItems.forEachIndexed { index, navigationItem ->
-                                val selected = index == selectedItem
-                                BottomBarItem(
-                                    selected = selected,
-                                    onClick = {
-                                        selectedItem = index
-                                    },
-                                    imageVector = navigationItem.icon,
-                                    label = navigationItem.title,
-                                    iconColor = if (selected) Color.White else Color.Black,
-                                    textColor = if (selected) Color.White else Color.Black,
-                                    visibleItem = VisibleItem.BOTH
-                                )
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(50.dp))
-
-                        AnimatedBottomBar(
-                            selectedItem = selectedItem,
-                            itemSize = navigationItems.size,
-                            indicatorStyle = IndicatorStyle.LINE,
-                            indicatorDirection = IndicatorDirection.BOTTOM,
-                            containerColor = Color.Transparent,
-                            indicatorColor = Color.Red
-                        ) {
-                            navigationItems.forEachIndexed { index, navigationItem ->
-                                val selected = index == selectedItem
-                                BottomBarItem(
-                                    selected = selected,
-                                    onClick = {
-                                        selectedItem = index
-                                    },
-                                    imageVector = navigationItem.icon,
-                                    label = navigationItem.title,
-                                    iconColor = if (selected) Color.Red else Color.Black,
-                                    textColor = if (selected) Color.Red else Color.Black,
-                                )
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(50.dp))
-
-                        AnimatedBottomBar(
-                            selectedItem = selectedItem,
-                            itemSize = navigationItems.size,
-                            indicatorStyle = IndicatorStyle.DOT
-                        ) {
-                            navigationItems.forEachIndexed { index, navigationItem ->
-                                val selected = index == selectedItem
-                                BottomBarItem(
-                                    selected = selected,
-                                    onClick = {
-                                        selectedItem = index
-                                    },
-                                    imageVector = navigationItem.icon,
-                                    label = navigationItem.title,
-                                    iconColor = if (selected) Color.White else Color.Black,
-                                    textColor = if (selected) Color.White else Color.Black,
-                                )
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(50.dp))
-
-                        AnimatedBottomBar(
-                            selectedItem = selectedItem,
-                            itemSize = navigationItems.size,
-                            indicatorStyle = IndicatorStyle.DOT
-                        ) {
-                            navigationItems.forEachIndexed { index, navigationItem ->
-                                val selected = index == selectedItem
-                                BottomBarItem(
-                                    selected = selected,
-                                    onClick = {
-                                        selectedItem = index
-                                    },
-                                    imageVector = navigationItem.icon,
-                                    label = navigationItem.title,
-                                    iconColor = if (selected) Color.White else Color.Black,
-                                    textColor = if (selected) Color.White else Color.Black,
-                                    itemStyle = ItemStyle.STYLE3,
-                                    activeIndicatorColor = Color.White,
-                                )
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(50.dp))
-
-                        AnimatedBottomBar(
-                            selectedItem = selectedItem,
-                            itemSize = navigationItems.size,
-                            indicatorStyle = IndicatorStyle.NONE
-                        ) {
-                            navigationItems.forEachIndexed { index, navigationItem ->
-                                val selected = index == selectedItem
-                                BottomBarItem(
-                                    selected = selected,
-                                    onClick = {
-                                        selectedItem = index
-                                    },
-                                    imageVector = navigationItem.icon,
-                                    label = navigationItem.title,
-                                    iconColor = if (selected) Color.Black else Color.White,
-                                    textColor = if (selected) Color.Black else Color.White,
-                                    itemStyle = ItemStyle.STYLE2,
-                                    activeIndicatorColor = Color.White,
-                                )
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(50.dp))
-
-                        AnimatedBottomBar(
-                            selectedItem = selectedItem,
-                            itemSize = navigationItems.size,
-                            indicatorStyle = IndicatorStyle.FILLED
-                        ) {
-                            navigationItems.forEachIndexed { index, navigationItem ->
-                                val selected = index == selectedItem
-                                BottomBarItem(
-                                    selected = selected,
-                                    onClick = {
-                                        selectedItem = index
-                                    },
-                                    imageVector = navigationItem.icon,
-                                    label = navigationItem.title,
-                                    iconColor = if (selected) Color.Black else Color.White,
-                                    textColor = if (selected) Color.Black else Color.White,
-                                    itemStyle = ItemStyle.STYLE3,
-                                    activeIndicatorColor = Color.White,
-                                )
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(50.dp))
-                    }
                 }
             }
         }
@@ -312,12 +104,178 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun HomeScreen() {
-    Box(
+    Column(
         modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
     ) {
-        Text(text = "HomeScreen")
+
+        Spacer(modifier = Modifier.height(50.dp))
+
+        AnimatedBottomBar(
+            selectedItem = selectedItem,
+            itemSize = navigationItems.size,
+            indicatorStyle = IndicatorStyle.LINE
+        ) {
+            navigationItems.forEachIndexed { index, navigationItem ->
+                val selected = index == selectedItem
+                BottomBarItem(
+                    selected = selected,
+                    onClick = {
+                        selectedItem = index
+                    },
+                    imageVector = navigationItem.icon,
+                    label = navigationItem.title,
+                    iconColor = if (selected) Color.White else Color.Black,
+                    textColor = if (selected) Color.White else Color.Black
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(50.dp))
+
+        AnimatedBottomBar(
+            selectedItem = selectedItem,
+            itemSize = navigationItems.size,
+            indicatorStyle = IndicatorStyle.LINE,
+            indicatorDirection = IndicatorDirection.BOTTOM
+        ) {
+            navigationItems.forEachIndexed { index, navigationItem ->
+                val selected = index == selectedItem
+                BottomBarItem(
+                    selected = selected,
+                    onClick = {
+                        selectedItem = index
+                    },
+                    imageVector = navigationItem.icon,
+                    label = navigationItem.title,
+                    iconColor = if (selected) Color.White else Color.Black,
+                    textColor = if (selected) Color.White else Color.Black,
+                    visibleItem = VisibleItem.BOTH
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(50.dp))
+
+        AnimatedBottomBar(
+            selectedItem = selectedItem,
+            itemSize = navigationItems.size,
+            indicatorStyle = IndicatorStyle.LINE,
+            indicatorDirection = IndicatorDirection.BOTTOM,
+            containerColor = Color.Transparent,
+            indicatorColor = Color.Red
+        ) {
+            navigationItems.forEachIndexed { index, navigationItem ->
+                val selected = index == selectedItem
+                BottomBarItem(
+                    selected = selected,
+                    onClick = {
+                        selectedItem = index
+                    },
+                    imageVector = navigationItem.icon,
+                    label = navigationItem.title,
+                    iconColor = if (selected) Color.Red else Color.Black,
+                    textColor = if (selected) Color.Red else Color.Black,
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(50.dp))
+
+        AnimatedBottomBar(
+            selectedItem = selectedItem,
+            itemSize = navigationItems.size,
+            indicatorStyle = IndicatorStyle.DOT
+        ) {
+            navigationItems.forEachIndexed { index, navigationItem ->
+                val selected = index == selectedItem
+                BottomBarItem(
+                    selected = selected,
+                    onClick = {
+                        selectedItem = index
+                    },
+                    imageVector = navigationItem.icon,
+                    label = navigationItem.title,
+                    iconColor = if (selected) Color.White else Color.Black,
+                    textColor = if (selected) Color.White else Color.Black,
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(50.dp))
+
+        AnimatedBottomBar(
+            selectedItem = selectedItem,
+            itemSize = navigationItems.size,
+            indicatorStyle = IndicatorStyle.DOT
+        ) {
+            navigationItems.forEachIndexed { index, navigationItem ->
+                val selected = index == selectedItem
+                BottomBarItem(
+                    selected = selected,
+                    onClick = {
+                        selectedItem = index
+                    },
+                    imageVector = navigationItem.icon,
+                    label = navigationItem.title,
+                    iconColor = if (selected) Color.White else Color.Black,
+                    textColor = if (selected) Color.White else Color.Black,
+                    itemStyle = ItemStyle.STYLE3,
+                    activeIndicatorColor = Color.White,
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(50.dp))
+
+        AnimatedBottomBar(
+            selectedItem = selectedItem,
+            itemSize = navigationItems.size,
+            indicatorStyle = IndicatorStyle.NONE
+        ) {
+            navigationItems.forEachIndexed { index, navigationItem ->
+                val selected = index == selectedItem
+                BottomBarItem(
+                    selected = selected,
+                    onClick = {
+                        selectedItem = index
+                    },
+                    imageVector = navigationItem.icon,
+                    label = navigationItem.title,
+                    iconColor = if (selected) Color.Black else Color.White,
+                    textColor = if (selected) Color.Black else Color.White,
+                    itemStyle = ItemStyle.STYLE2,
+                    activeIndicatorColor = Color.White,
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(50.dp))
+
+        AnimatedBottomBar(
+            selectedItem = selectedItem,
+            itemSize = navigationItems.size,
+            indicatorStyle = IndicatorStyle.FILLED
+        ) {
+            navigationItems.forEachIndexed { index, navigationItem ->
+                val selected = index == selectedItem
+                BottomBarItem(
+                    selected = selected,
+                    onClick = {
+                        selectedItem = index
+                    },
+                    imageVector = navigationItem.icon,
+                    label = navigationItem.title,
+                    iconColor = if (selected) Color.Black else Color.White,
+                    textColor = if (selected) Color.Black else Color.White,
+                    itemStyle = ItemStyle.STYLE3,
+                    activeIndicatorColor = Color.White,
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(150.dp))
     }
 }
 

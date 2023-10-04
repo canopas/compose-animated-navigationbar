@@ -86,5 +86,21 @@ fun RowScope.BottomBarItem(
                 label
             )
         }
+
+        ItemStyle.STYLE4 -> {
+            NavigationBarItem(
+                modifier,
+                selected,
+                onClick,
+                rememberVectorPainter(image = imageVector),
+                containerColor,
+                contentColor,
+                iconColor
+            )
+        }
+
+        ItemStyle.STYLE5 -> {
+            // TODO
+        }
     }
 }

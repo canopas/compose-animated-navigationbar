@@ -3,6 +3,7 @@ package com.example.bottombar.components
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -39,10 +40,19 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.bottombar.model.AnimationState
 import com.example.bottombar.model.VisibleItem
+import com.example.bottombar.utils.DefaultAlpha
+import com.example.bottombar.utils.DefaultScale
+import com.example.bottombar.utils.LargeScale
+import com.example.bottombar.utils.LongDuration
+import com.example.bottombar.utils.LowestAlpha
+import com.example.bottombar.utils.MediumDuration
+import com.example.bottombar.utils.ShortDuration
+import com.example.bottombar.utils.SmallScale
 
 /**
  * A composable function that creates view for **STYLE1** where selected item will
@@ -63,7 +73,7 @@ internal fun RowScope.NavigationBarItem(
 ) {
     var animationState by remember { mutableStateOf(AnimationState.Start) }
     val scaleAnimation: Float by animateFloatAsState(
-        if (animationState == AnimationState.Start) 1f else 0.9f,
+        if (animationState == AnimationState.Start) DefaultScale else SmallScale,
         tween(easing = LinearEasing),
         label = ""
     )
@@ -272,13 +282,22 @@ internal fun RowScope.NavigationBarItem(
 ) {
     var animationState by remember { mutableStateOf(AnimationState.Start) }
     val scaleAnimation: Float by animateFloatAsState(
-        if (animationState == AnimationState.Start) 1f else 0.8f,
-        tween(durationMillis = 600, easing = LinearEasing),
+        if (animationState == AnimationState.Start) DefaultScale else SmallScale,
+        tween(durationMillis = LongDuration, delayMillis = ShortDuration, easing = LinearEasing),
         label = ""
     )
     val alphaAnimation: Float by animateFloatAsState(
-        if (animationState == AnimationState.Start) 0f else 1f,
-        tween(durationMillis = 600, easing = LinearEasing),
+        if (animationState == AnimationState.Start) LowestAlpha else DefaultAlpha,
+        tween(
+            durationMillis = if (animationState == AnimationState.Start) MediumDuration else LongDuration,
+            delayMillis = if (animationState == AnimationState.Start) 0 else ShortDuration,
+            easing = LinearEasing
+        ),
+        label = ""
+    )
+    val paddingAnimation: Dp by animateDpAsState(
+        if (animationState == AnimationState.Start) 20.dp else 16.dp,
+        tween(durationMillis = LongDuration, delayMillis = ShortDuration, easing = LinearEasing),
         label = ""
     )
     LaunchedEffect(key1 = selected, key2 = Unit, block = {
@@ -309,7 +328,7 @@ internal fun RowScope.NavigationBarItem(
                 tint = iconColor,
                 modifier = Modifier
                     .scale(scaleAnimation)
-                    .padding(top = 16.dp)
+                    .padding(top = paddingAnimation)
             )
 
             Text(
@@ -323,6 +342,66 @@ internal fun RowScope.NavigationBarItem(
                     .align(Alignment.BottomCenter)
                     .alpha(alphaAnimation)
                     .padding(bottom = 16.dp)
+            )
+        }
+    }
+}
+
+
+/**
+ * A composable function that creates view for **STYLE4** where selected item will
+ * have active color and rest all will be grayed out.
+ */
+@Composable
+internal fun RowScope.NavigationBarItem(
+    modifier: Modifier,
+    selected: Boolean,
+    onClick: () -> Unit,
+    iconPainter: Painter,
+    containerColor: Color,
+    contentColor: Color,
+    iconColor: Color,
+) {
+    var animationState by remember { mutableStateOf(AnimationState.Start) }
+    val scaleAnimation: Float by animateFloatAsState(
+        if (animationState == AnimationState.Start) DefaultScale else LargeScale,
+        tween(durationMillis = MediumDuration, delayMillis = ShortDuration, easing = LinearEasing),
+        label = ""
+    )
+
+    val color by animateColorAsState(
+        targetValue = if (selected) iconColor else Color.Gray.copy(0.2f),
+        animationSpec = tween(easing = LinearEasing),
+        label = ""
+    )
+
+    LaunchedEffect(key1 = selected, key2 = Unit, block = {
+        animationState = if (selected) AnimationState.Finish else AnimationState.Start
+    })
+
+    Surface(
+        color = containerColor,
+        contentColor = contentColor,
+        modifier = Modifier
+            .clickable(
+                onClick = {
+                    onClick()
+                },
+                interactionSource = MutableInteractionSource(),
+                indication = rememberRipple(bounded = false, radius = 30.dp)
+            )
+            .weight(1f)
+    ) {
+        Box(
+            modifier = modifier
+                .fillMaxHeight()
+                .scale(scaleAnimation),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                painter = iconPainter,
+                contentDescription = null,
+                tint = color
             )
         }
     }

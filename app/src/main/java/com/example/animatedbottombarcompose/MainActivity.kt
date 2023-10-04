@@ -71,8 +71,8 @@ class MainActivity : ComponentActivity() {
                                             selectedItem = index
                                             navController.popBackStack()
                                             navController.navigate(navigationItem.route) {
-                                                navController.graph.startDestinationRoute?.let { screen_route ->
-                                                    popUpTo(screen_route) {
+                                                navController.graph.startDestinationRoute?.let { route ->
+                                                    popUpTo(route) {
                                                         saveState = true
                                                     }
                                                 }
@@ -126,7 +126,8 @@ fun Screen1(navigationItems: List<MainNavigation>) {
 
     Column(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Top
     ) {
         Spacer(modifier = Modifier.height(50.dp))
@@ -213,6 +214,8 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                 )
             }
         }
+
+        Spacer(modifier = Modifier.height(100.dp))
     }
 }
 
@@ -297,6 +300,8 @@ fun Screen2(navigationItems: List<MainNavigation>) {
                 )
             }
         }
+
+        Spacer(modifier = Modifier.height(150.dp))
     }
 }
 

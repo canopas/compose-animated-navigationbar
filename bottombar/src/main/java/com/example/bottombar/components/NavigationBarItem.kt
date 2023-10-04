@@ -315,14 +315,13 @@ internal fun RowScope.NavigationBarItem(
             Text(
                 text = label,
                 color = textColor,
-                fontSize = 9.sp,
+                fontSize = 10.sp,
                 maxLines = 1,
                 softWrap = false,
                 overflow = TextOverflow.Clip,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .alpha(alphaAnimation)
-                    .scale(scaleAnimation)
                     .padding(bottom = 16.dp)
             )
         }

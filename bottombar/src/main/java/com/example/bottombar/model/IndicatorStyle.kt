@@ -5,11 +5,11 @@ package com.example.bottombar.model
  *
  * [NONE]: No indicator will be shown.
  *
- * [DOT]: Dot indicator will be shown at specified direction.
+ * [DOT]: Dot indicator will be shown(only at bottom direction).
  *
  * [LINE]: Line indicator(Horizontal Tab) will be shown at specified direction.
  *
- * [FILLED]: Rounded indicator(Filled) will be shown at specified direction.
+ * [FILLED]: Rounded indicator(Filled) will be shown at center of bottom bar.
  */
 enum class IndicatorStyle {
     NONE,

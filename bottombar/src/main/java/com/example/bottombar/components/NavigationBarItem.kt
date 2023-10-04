@@ -2,9 +2,7 @@ package com.example.bottombar.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -63,7 +61,7 @@ internal fun RowScope.NavigationBarItem(
     var animationState by remember { mutableStateOf(AnimationState.Start) }
     val scaleAnimation: Float by animateFloatAsState(
         if (animationState == AnimationState.Start) 1f else 0.9f,
-        tween(400, easing = LinearEasing),
+        tween(easing = LinearEasing),
         label = ""
     )
 
@@ -93,18 +91,28 @@ internal fun RowScope.NavigationBarItem(
             verticalArrangement = Arrangement.Center
         ) {
             AnimatedVisibility(
+                visible = (visibleItem == VisibleItem.BOTH && !selected),
+                enter = fadeIn() + slideInVertically(
+                    tween(easing = LinearEasing)
+                ) { fullHeight -> -fullHeight },
+                exit = slideOutVertically(
+                    tween(easing = LinearEasing)
+                ) { fullHeight -> -fullHeight } + fadeOut()
+            ) {
+                Icon(
+                    painter = iconPainter,
+                    contentDescription = null,
+                    tint = iconColor
+                )
+            }
+
+            AnimatedVisibility(
                 visible = (visibleItem == VisibleItem.BOTH && selected),
                 enter = fadeIn() + slideInVertically(
-                    tween(
-                        400,
-                        easing = LinearOutSlowInEasing
-                    )
+                    tween(easing = LinearEasing)
                 ) { fullHeight -> fullHeight },
                 exit = slideOutVertically(
-                    tween(
-                        400,
-                        easing = LinearOutSlowInEasing
-                    )
+                    tween(easing = LinearEasing)
                 ) { fullHeight -> fullHeight } + fadeOut()
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -125,39 +133,18 @@ internal fun RowScope.NavigationBarItem(
                 }
             }
 
-            AnimatedVisibility(
-                visible = (visibleItem == VisibleItem.BOTH && !selected),
-                enter = fadeIn() + slideInVertically(
-                    tween(
-                        400,
-                        easing = LinearOutSlowInEasing
-                    )
-                ) { fullHeight -> fullHeight },
-                exit = slideOutVertically(
-                    tween(
-                        400,
-                        easing = LinearOutSlowInEasing
-                    )
-                ) { fullHeight -> fullHeight } + fadeOut()
-            ) {
-                Icon(
-                    painter = iconPainter,
-                    contentDescription = null,
-                    tint = iconColor
-                )
-            }
-
             if (visibleItem == VisibleItem.BOTH) return@Surface
+
             AnimatedVisibility(
                 visible = if (visibleItem == VisibleItem.LABEL) !selected else selected,
                 enter = fadeIn() + slideInVertically(
                     tween(
-                        easing = FastOutLinearInEasing
+                        easing = LinearEasing
                     )
                 ) { fullHeight -> -fullHeight },
                 exit = slideOutVertically(
                     tween(
-                        easing = FastOutLinearInEasing
+                        easing = LinearEasing
                     )
                 ) { fullHeight -> -fullHeight } + fadeOut()
             ) {
@@ -172,12 +159,12 @@ internal fun RowScope.NavigationBarItem(
                 visible = if (visibleItem == VisibleItem.LABEL) selected else !selected,
                 enter = fadeIn() + slideInVertically(
                     tween(
-                        easing = FastOutLinearInEasing
+                        easing = LinearEasing
                     )
                 ) { fullHeight -> fullHeight },
                 exit = slideOutVertically(
                     tween(
-                        easing = FastOutLinearInEasing
+                        easing = LinearEasing
                     )
                 ) { fullHeight -> fullHeight } + fadeOut()
             ) {
@@ -213,7 +200,7 @@ internal fun NavigationBarItem(
 ) {
     val color by animateColorAsState(
         targetValue = if (selected) activeIndicatorColor else inactiveIndicatorColor,
-        animationSpec = tween(300, easing = LinearEasing),
+        animationSpec = tween(easing = LinearEasing),
         label = ""
     )
 
@@ -283,7 +270,7 @@ internal fun RowScope.NavigationBarItem(
     var animationState by remember { mutableStateOf(AnimationState.Start) }
     val scaleAnimation: Float by animateFloatAsState(
         if (animationState == AnimationState.Start) 1f else 0.8f,
-        tween(400, easing = LinearEasing),
+        tween(easing = LinearEasing),
         label = ""
     )
 
@@ -318,7 +305,7 @@ internal fun RowScope.NavigationBarItem(
                 tint = iconColor
             )
 
-            AnimatedVisibility(selected, enter = fadeIn(tween(delayMillis = 200))) {
+            AnimatedVisibility(selected, enter = fadeIn(tween(delayMillis = 100))) {
                 Text(
                     text = label,
                     color = textColor,

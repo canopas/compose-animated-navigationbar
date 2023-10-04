@@ -92,7 +92,7 @@ fun AnimatedBottomBar(
                             DotIndicator(
                                 indicatorOffset = indicatorOffset,
                                 arraySize = itemSize,
-                                indicatorColor = Color.White,
+                                indicatorColor = indicatorColor,
                                 modifier = Modifier
                                     .height(bottomBarHeight)
                             )
@@ -119,7 +119,7 @@ fun AnimatedBottomBar(
                             FilledIndicator(
                                 indicatorOffset = indicatorOffset,
                                 arraySize = itemSize,
-                                indicatorColor = Color.White,
+                                indicatorColor = indicatorColor,
                                 modifier = Modifier
                                     .height(bottomBarHeight),
                                 indicatorShape = indicatorShape

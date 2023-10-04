@@ -13,26 +13,26 @@ sealed class MainNavigation(
     val icon: ImageVector
 ) {
     data object ScreenA : MainNavigation(
-        title = "Home",
-        route = "HomeScreen",
+        title = "Screen1",
+        route = "Screen1",
         icon = Icons.Default.Home
     )
 
     data object ScreenB : MainNavigation(
-        title = "Notifications",
-        route = "NotificationsScreen",
+        title = "Screen2",
+        route = "Screen2",
         icon = Icons.Default.Notifications
     )
 
     data object ScreenC : MainNavigation(
-        title = "Favourite",
-        route = "FavouriteScreen",
+        title = "Screen3",
+        route = "Screen3",
         icon = Icons.Default.Favorite
     )
 
     data object ScreenD : MainNavigation(
-        title = "Emails",
-        route = "EmailScreen",
+        title = "Screen4",
+        route = "Screen4",
         icon = Icons.Default.Email
     )
 }

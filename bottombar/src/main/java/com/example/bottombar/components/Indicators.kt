@@ -89,9 +89,9 @@ internal fun WormIndicator(
         Box(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
+                .padding(bottom = 4.dp)
                 .customWormTransition(indicatorOffset, indicatorColor, itemWidth)
                 .size(8.dp)
-                .padding(bottom = 4.dp)
         )
     }
 }

@@ -45,7 +45,8 @@ fun Screen3(navigationItems: List<MainNavigation>) {
 
         Text(
             text = "Item Style:",
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(horizontal = 8.dp)
         )
         Column(
             modifier = Modifier

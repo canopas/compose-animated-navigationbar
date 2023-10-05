@@ -7,6 +7,8 @@ package com.example.bottombar.model
  *
  * [DOT]: Dot indicator will be shown(only at bottom direction).
  *
+ * [WORM]: Worm indicator will be shown(only at bottom direction).
+ *
  * [LINE]: Line indicator(Horizontal Tab) will be shown at specified direction.
  *
  * [FILLED]: Rounded indicator(Filled) will be shown at center of bottom bar.
@@ -14,6 +16,7 @@ package com.example.bottombar.model
 enum class IndicatorStyle {
     NONE,
     DOT,
+    WORM,
     LINE,
     FILLED
 }

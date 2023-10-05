@@ -51,12 +51,17 @@ fun Screen1(navigationItems: List<MainNavigation>) {
     val visibilityOptions = listOf(VisibleItem.ICON, VisibleItem.LABEL, VisibleItem.BOTH)
     val itemStyles = listOf(ItemStyle.STYLE1, ItemStyle.STYLE2, ItemStyle.STYLE3, ItemStyle.STYLE4)
     val indicatorStyles =
-        listOf(IndicatorStyle.NONE, IndicatorStyle.LINE, IndicatorStyle.DOT, IndicatorStyle.FILLED)
+        listOf(
+            IndicatorStyle.NONE,
+            IndicatorStyle.LINE,
+            IndicatorStyle.DOT,
+            IndicatorStyle.WORM,
+            IndicatorStyle.FILLED
+        )
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 8.dp)
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Top
     ) {
@@ -64,7 +69,8 @@ fun Screen1(navigationItems: List<MainNavigation>) {
 
         Text(
             text = "Indicator Direction:",
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(horizontal = 8.dp)
         )
         Row(
             modifier = Modifier
@@ -83,7 +89,8 @@ fun Screen1(navigationItems: List<MainNavigation>) {
 
         Text(
             text = "Visible Item:",
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(horizontal = 8.dp)
         )
         Row(
             modifier = Modifier
@@ -102,7 +109,8 @@ fun Screen1(navigationItems: List<MainNavigation>) {
 
         Text(
             text = "Item Style:",
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(horizontal = 8.dp)
         )
         Column(
             modifier = Modifier
@@ -129,7 +137,8 @@ fun Screen1(navigationItems: List<MainNavigation>) {
 
         Text(
             text = "Indicator Style:",
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(horizontal = 8.dp)
         )
         Column(
             modifier = Modifier
@@ -137,7 +146,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                 .padding(horizontal = 8.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                indicatorStyles.take(2).forEach {
+                indicatorStyles.take(3).forEach {
                     RadioButton(selected = it == indicatorStyle, onClick = {
                         indicatorStyle = it
                     })

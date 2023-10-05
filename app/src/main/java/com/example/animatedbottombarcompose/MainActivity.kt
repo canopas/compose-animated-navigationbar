@@ -17,10 +17,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.animatedbottombarcompose.composables.Screen1
 import com.example.animatedbottombarcompose.composables.Screen2
 import com.example.animatedbottombarcompose.composables.Screen3
+import com.example.animatedbottombarcompose.model.MainNavigation
 import com.example.animatedbottombarcompose.ui.theme.AnimatedBottomBarComposeTheme
 import com.example.bottombar.AnimatedBottomBar
 import com.example.bottombar.components.BottomBarItem
-import com.example.animatedbottombarcompose.model.MainNavigation
 import com.example.bottombar.model.IndicatorStyle
 
 class MainActivity : ComponentActivity() {

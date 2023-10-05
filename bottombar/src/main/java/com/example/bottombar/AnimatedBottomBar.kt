@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.example.bottombar.components.DotIndicator
 import com.example.bottombar.components.FilledIndicator
 import com.example.bottombar.components.LineIndicator
+import com.example.bottombar.components.WormIndicator
 import com.example.bottombar.model.IndicatorDirection
 import com.example.bottombar.model.IndicatorStyle
 import com.example.bottombar.utils.conditional
@@ -81,7 +82,8 @@ fun AnimatedBottomBar(
                 itemSize?.let {
                     val maxWidth = this.maxWidth
                     val indicatorOffset: Dp by animateDpAsState(
-                        targetValue = (maxWidth / itemSize) * selectedItem,
+                        targetValue = (maxWidth / (itemSize.takeIf { it != 0 }
+                            ?: 1)) * selectedItem,
                         animationSpec = animationSpec,
                         label = "indicator"
                     )
@@ -91,17 +93,27 @@ fun AnimatedBottomBar(
                         IndicatorStyle.DOT -> {
                             DotIndicator(
                                 indicatorOffset = indicatorOffset,
-                                arraySize = itemSize,
+                                arraySize = itemSize.takeIf { it != 0 } ?: 1,
                                 indicatorColor = indicatorColor,
                                 modifier = Modifier
                                     .height(bottomBarHeight)
                             )
                         }
 
+                        IndicatorStyle.WORM -> {
+                            WormIndicator(
+                                indicatorOffset = indicatorOffset,
+                                indicatorColor = indicatorColor,
+                                modifier = Modifier
+                                    .height(bottomBarHeight),
+                                itemWidth = maxWidth / (itemSize.takeIf { it != 0 } ?: 1)
+                            )
+                        }
+
                         IndicatorStyle.LINE -> {
                             LineIndicator(
                                 indicatorOffset = indicatorOffset,
-                                arraySize = itemSize,
+                                arraySize = itemSize.takeIf { it != 0 } ?: 1,
                                 indicatorHeight = indicatorHeight,
                                 indicatorColor = indicatorColor,
                                 modifier = Modifier
@@ -118,7 +130,7 @@ fun AnimatedBottomBar(
                         IndicatorStyle.FILLED -> {
                             FilledIndicator(
                                 indicatorOffset = indicatorOffset,
-                                arraySize = itemSize,
+                                arraySize = itemSize.takeIf { it != 0 } ?: 1,
                                 indicatorColor = indicatorColor,
                                 modifier = Modifier
                                     .height(bottomBarHeight),

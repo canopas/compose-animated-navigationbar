@@ -35,7 +35,17 @@ fun Screen2(navigationItems: List<MainNavigation>) {
     var itemStyle: ItemStyle by remember {
         mutableStateOf(ItemStyle.STYLE3)
     }
+    var indicatorStyle: IndicatorStyle by remember {
+        mutableStateOf(IndicatorStyle.WORM)
+    }
     val itemStyles = listOf(ItemStyle.STYLE1, ItemStyle.STYLE2, ItemStyle.STYLE3, ItemStyle.STYLE4)
+    val indicatorStyles =
+        listOf(
+            IndicatorStyle.NONE,
+            IndicatorStyle.LINE,
+            IndicatorStyle.DOT,
+            IndicatorStyle.WORM
+        )
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -46,7 +56,8 @@ fun Screen2(navigationItems: List<MainNavigation>) {
 
         Text(
             text = "Item Style:",
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(horizontal = 8.dp)
         )
         Column(
             modifier = Modifier
@@ -71,12 +82,40 @@ fun Screen2(navigationItems: List<MainNavigation>) {
             }
         }
 
+        Text(
+            text = "Indicator Style:",
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(horizontal = 8.dp)
+        )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                indicatorStyles.take(2).forEach {
+                    RadioButton(selected = it == indicatorStyle, onClick = {
+                        indicatorStyle = it
+                    })
+                    Text(text = it.name)
+                }
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                indicatorStyles.takeLast(2).forEach {
+                    RadioButton(selected = it == indicatorStyle, onClick = {
+                        indicatorStyle = it
+                    })
+                    Text(text = it.name)
+                }
+            }
+        }
+
         Spacer(modifier = Modifier.height(100.dp))
 
         AnimatedBottomBar(
             selectedItem = selectedItem,
             itemSize = navigationItems.size,
-            indicatorStyle = if (itemStyle != ItemStyle.STYLE2) IndicatorStyle.DOT else IndicatorStyle.NONE,
+            indicatorStyle = if (itemStyle != ItemStyle.STYLE2) indicatorStyle else IndicatorStyle.NONE,
             containerColor = Color.Transparent,
             indicatorColor = Color.Red
         ) {
@@ -102,7 +141,7 @@ fun Screen2(navigationItems: List<MainNavigation>) {
         AnimatedBottomBar(
             selectedItem = selectedItem,
             itemSize = navigationItems.size,
-            indicatorStyle = if (itemStyle != ItemStyle.STYLE2) IndicatorStyle.DOT else IndicatorStyle.NONE,
+            indicatorStyle = if (itemStyle != ItemStyle.STYLE2) indicatorStyle else IndicatorStyle.NONE,
             indicatorColor = Color.White
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->

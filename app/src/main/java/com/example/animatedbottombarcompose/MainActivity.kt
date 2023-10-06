@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
                             selectedItem = selectedItem,
                             itemSize = navigationItems.take(3).size,
                             containerColor = Color.LightGray,
-                            indicatorStyle = IndicatorStyle.LINE
+                            indicatorStyle = IndicatorStyle.DOT
                         ) {
                             navigationItems.take(3).forEachIndexed { index, navigationItem ->
                                 BottomBarItem(

@@ -20,6 +20,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.bottombar.components.DotIndicator
@@ -39,6 +41,7 @@ val DEFAULT_INDICATOR_HEIGHT = 4.dp
  *@param [bottomBarHeight] The default height of the bottom bar.
  *@param [containerColor] The color of the navigation bar/container.
  *@param [contentColor] The color of the content.
+ *@param [containerShape] The shape of the navigation bar.
  *@param [selectedItem] The index of currently selected item.
  *@param [itemSize] The count of items that will be shown in bottom bar.
  *@param [indicatorStyle] The type of indicator that need to be shown. Select from [IndicatorStyle]
@@ -55,6 +58,7 @@ fun AnimatedBottomBar(
     bottomBarHeight: Dp = 64.dp,
     containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
     contentColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
+    containerShape: Shape = RectangleShape,
     selectedItem: Int? = null,
     itemSize: Int? = null,
     indicatorStyle: IndicatorStyle = IndicatorStyle.NONE,
@@ -71,7 +75,8 @@ fun AnimatedBottomBar(
     Surface(
         color = containerColor,
         contentColor = contentColor,
-        modifier = modifier
+        modifier = modifier,
+        shape = containerShape
     ) {
         BoxWithConstraints(
             modifier = Modifier

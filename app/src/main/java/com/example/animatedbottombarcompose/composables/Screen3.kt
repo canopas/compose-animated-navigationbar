@@ -34,7 +34,13 @@ fun Screen3(navigationItems: List<MainNavigation>) {
     var itemStyle: ItemStyle by remember {
         mutableStateOf(ItemStyle.STYLE3)
     }
-    val itemStyles = listOf(ItemStyle.STYLE1, ItemStyle.STYLE2, ItemStyle.STYLE3, ItemStyle.STYLE4)
+    val itemStyles = listOf(
+        ItemStyle.STYLE1,
+        ItemStyle.STYLE2,
+        ItemStyle.STYLE3,
+        ItemStyle.STYLE4,
+        ItemStyle.STYLE5
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -54,7 +60,7 @@ fun Screen3(navigationItems: List<MainNavigation>) {
                 .padding(horizontal = 8.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                itemStyles.take(2).forEach {
+                itemStyles.take(3).forEach {
                     RadioButton(selected = it == itemStyle, onClick = {
                         itemStyle = it
                     })

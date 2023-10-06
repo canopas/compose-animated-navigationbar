@@ -13,6 +13,9 @@ package com.example.bottombar.model
  *
  *[STYLE4]: Only Icon will be visible at a time with scale animation and
  * only selected icon will have icon-color and others as grayed out.
+ *
+ *[STYLE5]: Only Icon will be visible at a time with glowing background for selected item.
+ *
  */
 enum class ItemStyle {
     STYLE1,

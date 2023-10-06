@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
@@ -22,6 +23,7 @@ import com.example.bottombar.model.VisibleItem
  *  @param [textColor] The color to be applied on the text.
  *  @param [activeIndicatorColor] The color to be applied on the indicator when its selected/active. Applicable only for [ItemStyle.STYLE2]
  *  @param [inactiveIndicatorColor]  The color to be applied on the indicator when its inactive. Applicable only for [ItemStyle.STYLE2]
+ *  @param [glowingBackground] The glowing background which will be applied behind image. Applicable only for [ItemStyle.STYLE5]
  *  @param [label] The text to be shown on bottom bar.
  *  @param [visibleItem] The item(either LABEL/ICON) that need to be shown when it is selected. Select from [VisibleItem]
  *  @param [itemStyle] The style to be applied on bottom bar items. Select from [ItemStyle]
@@ -38,6 +40,13 @@ fun RowScope.BottomBarItem(
     textColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     activeIndicatorColor: Color = MaterialTheme.colorScheme.onPrimaryContainer.copy(0.2f),
     inactiveIndicatorColor: Color = Color.Transparent,
+    glowingBackground: Brush = Brush.radialGradient(
+        listOf(
+            Color.White,
+            Color.Transparent,
+            Color.Transparent
+        )
+    ),
     label: String,
     visibleItem: VisibleItem = VisibleItem.ICON,
     itemStyle: ItemStyle = ItemStyle.STYLE1
@@ -100,7 +109,16 @@ fun RowScope.BottomBarItem(
         }
 
         ItemStyle.STYLE5 -> {
-            // TODO
+            NavigationBarItem(
+                modifier,
+                selected,
+                onClick,
+                rememberVectorPainter(image = imageVector),
+                containerColor,
+                contentColor,
+                iconColor,
+                glowingBackground = glowingBackground
+            )
         }
     }
 }

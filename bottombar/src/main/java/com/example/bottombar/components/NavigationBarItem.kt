@@ -10,6 +10,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -19,6 +20,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -37,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.style.TextOverflow
@@ -87,6 +90,7 @@ internal fun RowScope.NavigationBarItem(
         color = containerColor,
         contentColor = contentColor,
         modifier = Modifier
+            .weight(1f)
             .clickable(
                 onClick = {
                     onClick()
@@ -94,7 +98,6 @@ internal fun RowScope.NavigationBarItem(
                 interactionSource = MutableInteractionSource(),
                 indication = rememberRipple(bounded = false, radius = 30.dp)
             )
-            .weight(1f)
     ) {
         Column(
             modifier = modifier
@@ -219,17 +222,17 @@ internal fun NavigationBarItem(
 
     BoxWithConstraints(
         modifier = modifier
-            .fillMaxHeight()
-            .clickable(
-                interactionSource = MutableInteractionSource(),
-                indication = rememberRipple(bounded = false, radius = 30.dp)
-            ) { onClick() },
+            .fillMaxHeight(),
         contentAlignment = Alignment.Center
     ) {
         Surface(
             color = color,
             contentColor = contentColor,
-            shape = RoundedCornerShape(maxHeight / 2)
+            shape = RoundedCornerShape(maxHeight / 2),
+            modifier = Modifier.clickable(
+                interactionSource = MutableInteractionSource(),
+                indication = rememberRipple(bounded = false, radius = 30.dp)
+            ) { onClick() }
         ) {
             Row(
                 modifier = Modifier
@@ -370,7 +373,7 @@ internal fun RowScope.NavigationBarItem(
     )
 
     val color by animateColorAsState(
-        targetValue = if (selected) iconColor else Color.Gray.copy(0.2f),
+        targetValue = if (selected) iconColor else iconColor.copy(0.5f),
         animationSpec = tween(easing = LinearEasing),
         label = ""
     )
@@ -402,6 +405,69 @@ internal fun RowScope.NavigationBarItem(
                 painter = iconPainter,
                 contentDescription = null,
                 tint = color
+            )
+        }
+    }
+}
+
+/**
+ * A composable function that creates view for **STYLE5** where selected item will
+ * have active color with glowing background.
+ */
+@Composable
+internal fun RowScope.NavigationBarItem(
+    modifier: Modifier,
+    selected: Boolean,
+    onClick: () -> Unit,
+    iconPainter: Painter,
+    containerColor: Color,
+    contentColor: Color,
+    iconColor: Color,
+    glowingBackground: Brush,
+) {
+    var animationState by remember { mutableStateOf(AnimationState.Start) }
+    val scaleAnimation: Float by animateFloatAsState(
+        if (animationState == AnimationState.Start) LowestAlpha else DefaultAlpha,
+        tween(durationMillis = MediumDuration, delayMillis = ShortDuration, easing = LinearEasing),
+        label = ""
+    )
+
+    LaunchedEffect(key1 = selected, key2 = Unit, block = {
+        animationState = if (selected) AnimationState.Finish else AnimationState.Start
+    })
+
+    Surface(
+        color = containerColor,
+        contentColor = contentColor,
+        modifier = Modifier
+            .clickable(
+                onClick = {
+                    onClick()
+                },
+                interactionSource = MutableInteractionSource(),
+                indication = rememberRipple(bounded = false, radius = 30.dp)
+            )
+            .weight(1f)
+    ) {
+        Box(
+            modifier = modifier
+                .fillMaxHeight(),
+            contentAlignment = Alignment.Center
+        ) {
+
+            if (selected) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .scale(scaleAnimation)
+                        .background(glowingBackground)
+                )
+            }
+
+            Icon(
+                painter = iconPainter,
+                contentDescription = null,
+                tint = iconColor
             )
         }
     }

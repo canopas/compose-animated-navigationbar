@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.animatedbottombarcompose.model.MainNavigation
@@ -27,7 +28,6 @@ import com.example.bottombar.AnimatedBottomBar
 import com.example.bottombar.components.BottomBarItem
 import com.example.bottombar.model.IndicatorStyle
 import com.example.bottombar.model.ItemStyle
-import com.example.bottombar.model.VisibleItem
 
 @Composable
 fun Screen2(navigationItems: List<MainNavigation>) {
@@ -38,7 +38,13 @@ fun Screen2(navigationItems: List<MainNavigation>) {
     var indicatorStyle: IndicatorStyle by remember {
         mutableStateOf(IndicatorStyle.WORM)
     }
-    val itemStyles = listOf(ItemStyle.STYLE1, ItemStyle.STYLE2, ItemStyle.STYLE3, ItemStyle.STYLE4)
+    val itemStyles = listOf(
+        ItemStyle.STYLE1,
+        ItemStyle.STYLE2,
+        ItemStyle.STYLE3,
+        ItemStyle.STYLE4,
+        ItemStyle.STYLE5
+    )
     val indicatorStyles =
         listOf(
             IndicatorStyle.NONE,
@@ -65,7 +71,7 @@ fun Screen2(navigationItems: List<MainNavigation>) {
                 .padding(horizontal = 8.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                itemStyles.take(2).forEach {
+                itemStyles.take(3).forEach {
                     RadioButton(selected = it == itemStyle, onClick = {
                         itemStyle = it
                     })
@@ -130,8 +136,14 @@ fun Screen2(navigationItems: List<MainNavigation>) {
                     label = navigationItem.title,
                     iconColor = if (selected) Color.Red else Color.Black,
                     textColor = if (selected) Color.Red else Color.Black,
-                    visibleItem = VisibleItem.BOTH,
-                    itemStyle = itemStyle
+                    itemStyle = itemStyle,
+                    glowingBackground = Brush.radialGradient(
+                        listOf(
+                            Color.Red.copy(0.5f),
+                            Color.Transparent,
+                            Color.Transparent
+                        )
+                    )
                 )
             }
         }
@@ -155,8 +167,14 @@ fun Screen2(navigationItems: List<MainNavigation>) {
                     label = navigationItem.title,
                     iconColor = if (selected) Color.White else Color.Black,
                     textColor = if (selected) Color.White else Color.Black,
-                    visibleItem = VisibleItem.BOTH,
-                    itemStyle = itemStyle
+                    itemStyle = itemStyle,
+                    glowingBackground = Brush.radialGradient(
+                        listOf(
+                            Color.Black,
+                            Color.Transparent,
+                            Color.Transparent
+                        )
+                    )
                 )
             }
         }

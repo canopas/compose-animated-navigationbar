@@ -4,20 +4,39 @@
 Bottom Navigation Bars with
 customizable animations. It allows you to easily integrate attractive navigation bars into your
 Android app, enhancing the user experience.
+<table>
+  <tr>
+    <td align="center">
+       <b>LINE INDICATOR</b>
+       <br />
+       <br />
+      <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/ed9d5ac1-dc6f-4b91-8c98-e6c8826f4736"  width="80%" height="80%">
+    </td>
+    <td align="center">
+       <b>FILLED INDICATOR</b>
+       <br />
+       <br />
+      <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/75622692-fded-4891-9d32-f2540e8e4744"  width="80%" height="80%">
+    </td>
 
+  </tr>
 
-<p align="center">
-  <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/ed9d5ac1-dc6f-4b91-8c98-e6c8826f4736"  width="30%" height="30%">
+  <tr>
+    <td align="center">
+       <b>DOT INDICATOR</b>
+       <br />
+       <br />
+     <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/b0dc3420-9c79-4f05-892f-1c67ebea5817"  width="80%" height="80%">
+    </td>
+    <td align="center">
+       <b>WORM INDICATOR</b>
+       <br />
+       <br />
+      <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/8b16d97a-a1c8-40ed-a6be-5fb05fbcd909"  width="80%" height="80%">
+    </td>
+</tr>
+</table>
 
-  <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/75622692-fded-4891-9d32-f2540e8e4744"  width="30%" height="30%">
-
-</p>
-<p align="center">
-  <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/b0dc3420-9c79-4f05-892f-1c67ebea5817"  width="30%" height="30%">
-
-
-  <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/8b16d97a-a1c8-40ed-a6be-5fb05fbcd909"  width="30%" height="30%">
-</p>
 
 ## Features
 

@@ -4,26 +4,24 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.animatedbottombarcompose.composables.Screen1
+import com.example.animatedbottombarcompose.composables.Screen2
+import com.example.animatedbottombarcompose.composables.Screen3
+import com.example.animatedbottombarcompose.model.MainNavigation
 import com.example.animatedbottombarcompose.ui.theme.AnimatedBottomBarComposeTheme
 import com.example.bottombar.AnimatedBottomBar
 import com.example.bottombar.components.BottomBarItem
-import com.example.animatedbottombarcompose.model.MainNavigation
+import com.example.bottombar.model.IndicatorStyle
 
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -44,9 +42,11 @@ class MainActivity : ComponentActivity() {
                     bottomBar = {
                         AnimatedBottomBar(
                             selectedItem = selectedItem,
-                            itemSize = navigationItems.size
+                            itemSize = navigationItems.take(3).size,
+                            containerColor = Color.LightGray,
+                            indicatorStyle = IndicatorStyle.DOT
                         ) {
-                            navigationItems.forEachIndexed { index, navigationItem ->
+                            navigationItems.take(3).forEachIndexed { index, navigationItem ->
                                 BottomBarItem(
                                     selected = currentRoute == navigationItem.route,
                                     onClick = {
@@ -54,8 +54,8 @@ class MainActivity : ComponentActivity() {
                                             selectedItem = index
                                             navController.popBackStack()
                                             navController.navigate(navigationItem.route) {
-                                                navController.graph.startDestinationRoute?.let { screen_route ->
-                                                    popUpTo(screen_route) {
+                                                navController.graph.startDestinationRoute?.let { route ->
+                                                    popUpTo(route) {
                                                         saveState = true
                                                     }
                                                 }
@@ -64,8 +64,9 @@ class MainActivity : ComponentActivity() {
                                             }
                                         }
                                     },
-                                    icon = rememberVectorPainter(image = navigationItem.icon),
-                                    label = navigationItem.title
+                                    imageVector = navigationItem.icon,
+                                    label = navigationItem.title,
+                                    containerColor = Color.Transparent
                                 )
                             }
                         }
@@ -76,64 +77,17 @@ class MainActivity : ComponentActivity() {
                         startDestination = MainNavigation.ScreenA.route
                     ) {
                         composable(MainNavigation.ScreenA.route) {
-                            HomeScreen()
+                            Screen1(navigationItems)
                         }
                         composable(MainNavigation.ScreenB.route) {
-                            NotificationsScreen()
+                            Screen2(navigationItems)
                         }
                         composable(MainNavigation.ScreenC.route) {
-                            FavouritesScreen()
-                        }
-                        composable(MainNavigation.ScreenD.route) {
-                            EmailsScreen()
+                            Screen3(navigationItems)
                         }
                     }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun HomeScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "HomeScreen")
-    }
-}
-
-@Composable
-fun NotificationsScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "NotificationsScreen")
-    }
-}
-
-@Composable
-fun FavouritesScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "FavouritesScreen")
-    }
-}
-
-@Composable
-fun EmailsScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "EmailsScreen")
     }
 }

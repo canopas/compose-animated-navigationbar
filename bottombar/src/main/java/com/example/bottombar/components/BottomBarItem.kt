@@ -1,106 +1,124 @@
 package com.example.bottombar.components
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.FastOutLinearInEasing
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.material.ripple.rememberRipple
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
-import com.example.bottombar.utils.VisibleItem
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import com.example.bottombar.model.ItemStyle
+import com.example.bottombar.model.VisibleItem
 
+/**
+ * A composable function that creates view for navigation items according to provided item style.
+ *  @param [modifier] Modifier to be applied to the navigation bar.
+ *  @param [selected] The index of the currently selected item.
+ *  @param [onClick] The handler that will be invoked when user clicks on bottom bar item.
+ *  @param [imageVector] The image vector that will be used to show item icon.
+ *  @param [containerColor] The color to be applied on the container.
+ *  @param [contentColor] The color to be applied on the content.
+ *  @param [iconColor] The color to be applied on the icon.
+ *  @param [textColor] The color to be applied on the text.
+ *  @param [activeIndicatorColor] The color to be applied on the indicator when its selected/active. Applicable only for [ItemStyle.STYLE2]
+ *  @param [inactiveIndicatorColor]  The color to be applied on the indicator when its inactive. Applicable only for [ItemStyle.STYLE2]
+ *  @param [glowingBackground] The glowing background which will be applied behind image. Applicable only for [ItemStyle.STYLE5]
+ *  @param [label] The text to be shown on bottom bar.
+ *  @param [visibleItem] The item(either LABEL/ICON) that need to be shown when it is selected. Select from [VisibleItem]
+ *  @param [itemStyle] The style to be applied on bottom bar items. Select from [ItemStyle]
+ */
 @Composable
 fun RowScope.BottomBarItem(
     modifier: Modifier = Modifier,
     selected: Boolean,
     onClick: () -> Unit,
-    icon: Painter,
-    containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
+    imageVector: ImageVector,
+    containerColor: Color = Color.Transparent,
     contentColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     iconColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     textColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
+    activeIndicatorColor: Color = MaterialTheme.colorScheme.onPrimaryContainer.copy(0.2f),
+    inactiveIndicatorColor: Color = Color.Transparent,
+    glowingBackground: Brush = Brush.radialGradient(
+        listOf(
+            Color.White,
+            Color.Transparent,
+            Color.Transparent
+        )
+    ),
     label: String,
-    visibleItem: VisibleItem = VisibleItem.LABEL
+    visibleItem: VisibleItem = VisibleItem.ICON,
+    itemStyle: ItemStyle = ItemStyle.STYLE1
 ) {
-    Surface(
-        color = containerColor,
-        contentColor = contentColor,
-        modifier = Modifier
-            .clickable(
-                onClick = {
-                    onClick()
-                },
-                interactionSource = MutableInteractionSource(),
-                indication = rememberRipple(bounded = false, radius = 30.dp)
+    when (itemStyle) {
+        ItemStyle.STYLE1 -> {
+            NavigationBarItem(
+                modifier,
+                selected,
+                onClick,
+                rememberVectorPainter(image = imageVector),
+                containerColor,
+                contentColor,
+                iconColor,
+                textColor,
+                label,
+                visibleItem
             )
-            .weight(1f)
-    ) {
-        Column(
-            modifier = modifier
-                .fillMaxHeight(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            AnimatedVisibility(
-                visible = if (visibleItem == VisibleItem.LABEL) !selected else selected,
-                enter = fadeIn() + slideInVertically(
-                    tween(
-                        easing = FastOutLinearInEasing
-                    )
-                ) { fullHeight -> -fullHeight },
-                exit = slideOutVertically(
-                    tween(
-                        easing = FastOutLinearInEasing
-                    )
-                ) { fullHeight -> -fullHeight } + fadeOut()
-            ) {
-                Icon(
-                    painter = icon,
-                    contentDescription = null,
-                    tint = iconColor
-                )
-            }
+        }
 
-            AnimatedVisibility(
-                visible = if (visibleItem == VisibleItem.LABEL) selected else !selected,
-                enter = fadeIn() + slideInVertically(
-                    tween(
-                        easing = FastOutLinearInEasing
-                    )
-                ) { fullHeight -> fullHeight },
-                exit = slideOutVertically(
-                    tween(
-                        easing = FastOutLinearInEasing
-                    )
-                ) { fullHeight -> fullHeight } + fadeOut()
-            ) {
-                Text(
-                    text = label,
-                    color = textColor,
-                    style = MaterialTheme.typography.bodyMedium,
-                    maxLines = 1,
-                    softWrap = false,
-                    overflow = TextOverflow.Clip
-                )
-            }
+        ItemStyle.STYLE2 -> {
+            NavigationBarItem(
+                modifier,
+                selected,
+                onClick,
+                rememberVectorPainter(image = imageVector),
+                contentColor,
+                iconColor,
+                textColor,
+                label,
+                activeIndicatorColor,
+                inactiveIndicatorColor
+            )
+        }
+
+        ItemStyle.STYLE3 -> {
+            NavigationBarItem(
+                modifier,
+                selected,
+                onClick,
+                rememberVectorPainter(image = imageVector),
+                containerColor,
+                contentColor,
+                iconColor,
+                textColor,
+                label
+            )
+        }
+
+        ItemStyle.STYLE4 -> {
+            NavigationBarItem(
+                modifier,
+                selected,
+                onClick,
+                rememberVectorPainter(image = imageVector),
+                containerColor,
+                contentColor,
+                iconColor
+            )
+        }
+
+        ItemStyle.STYLE5 -> {
+            NavigationBarItem(
+                modifier,
+                selected,
+                onClick,
+                rememberVectorPainter(image = imageVector),
+                containerColor,
+                contentColor,
+                iconColor,
+                glowingBackground = glowingBackground
+            )
         }
     }
 }

@@ -7,14 +7,16 @@ Android app, enhancing the user experience.
 
 
 <p align="center">
-  <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/051e298d-59bb-4082-848a-ce4762b3a486" alt="Sample gif">
-    <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/541694b3-acb1-4adb-b599-28da3e9d6805" alt="Sample gif">
-    <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/d6c5f046-4f06-41fc-a192-96cd189d9f01" alt="Sample gif">
-    <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/60c09fc8-61df-4047-8a8e-ac159436278f" alt="Sample gif">
-    <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/0b9a21c7-39a7-4eee-a483-d13c4f2cb270" alt="Sample gif">
-    <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/e4597c2a-9e5c-42a2-9e7b-86c327a0b57f" alt="Sample gif">
-    <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/bd72551c-bda5-4cda-b03c-2b96b74effe1" alt="Sample gif">
-    <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/c136437e-70d2-4a8e-bfbc-7881cb844d0d" alt="Sample gif">
+  <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/ed9d5ac1-dc6f-4b91-8c98-e6c8826f4736"  width="30%" height="30%">
+
+  <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/75622692-fded-4891-9d32-f2540e8e4744"  width="30%" height="30%">
+
+</p>
+<p align="center">
+  <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/b0dc3420-9c79-4f05-892f-1c67ebea5817"  width="30%" height="30%">
+
+
+  <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/8b16d97a-a1c8-40ed-a6be-5fb05fbcd909"  width="30%" height="30%">
 </p>
 
 ## Features

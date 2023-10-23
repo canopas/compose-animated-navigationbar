@@ -1,0 +1,76 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+        from android.sourceSets.main.java.srcDirs
+    } else {
+        from sourceSets.main.java.srcDirs
+    }
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+group = PUBLISH_GROUP_ID
+version = rootProject.ext["publish_version"]
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                // The coordinates of the library, being set from variables that
+                // we'll set up later
+                groupId PUBLISH_GROUP_ID
+                artifactId PUBLISH_ARTIFACT_ID
+                version rootProject.ext["publish_version"]
+
+                /// Two artifacts, the `aar` (or `jar`) and the sources
+                if (project.plugins.findPlugin("com.android.library")) {
+                    from components.release
+                } else {
+                    artifact("$buildDir/libs/${project.getName()}-${version}.jar")
+                }
+
+                artifact androidSourcesJar
+
+                // Mostly self-explanatory metadata
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'Bottom bar in Jetpack Compose with customizable styles & animations'
+                    url = 'https://github.com/canopas/AnimatedBottomBarCompose'
+                    licenses {
+                        license {
+                            name = 'License'
+                            url = 'https://github.com/canopas/AnimatedBottomBarCompose/blob/master/License'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'cp-megh-l'
+                            name = 'Megh Canopas'
+                            email = 'megh.l@canopas.com'
+                        }
+                        // Add all other devs here...
+                    }
+
+                    scm {
+                        connection = 'scm:git:github.com/canopas/Intro-showcase-view.git'
+                        developerConnection = 'scm:git:ssh://github.com/canopas/Intro-showcase-view.git'
+                        url = 'https://github.com/canopas/Intro-showcase-view.git'
+                    }
+                }
+            }
+        }
+    }
+}
+signing {
+    useInMemoryPgpKeys(
+            rootProject.ext["signing.keyId"],
+            rootProject.ext["signing.key"],
+            rootProject.ext["signing.password"],
+    )
+
+    sign publishing.publications
+}

@@ -3,6 +3,15 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+ext {
+    set("PUBLISH_GROUP_ID", "com.canopas.AnimatedBottomBarCompose")
+    set("PUBLISH_ARTIFACT_ID", "animatedbottombarcompose")
+}
+
+apply{
+    from("${rootDir}/scripts/publish-module.gradle")
+}
+
 android {
     namespace = "com.example.bottombar"
     compileSdk = 33
@@ -27,11 +36,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true

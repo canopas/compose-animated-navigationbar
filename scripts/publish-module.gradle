@@ -1,7 +1,7 @@
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-task androidSourcesJar(type: Jar) {
+tasks.register('androidSourcesJar', Jar) {
     archiveClassifier.set('sources')
     if (project.plugins.findPlugin("com.android.library")) {
         from android.sourceSets.main.java.srcDirs
@@ -56,9 +56,9 @@ afterEvaluate {
                     }
 
                     scm {
-                        connection = 'scm:git:github.com/canopas/Intro-showcase-view.git'
-                        developerConnection = 'scm:git:ssh://github.com/canopas/Intro-showcase-view.git'
-                        url = 'https://github.com/canopas/Intro-showcase-view.git'
+                        connection = 'scm:git:github.com/canopas/AnimatedBottomBarCompose.git'
+                        developerConnection = 'scm:git:ssh://github.com/canopas/AnimatedBottomBarCompose.git'
+                        url = 'https://github.com/canopas/AnimatedBottomBarCompose.git'
                     }
                 }
             }

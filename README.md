@@ -47,6 +47,19 @@ Android app, enhancing the user experience.
 - **Customization:** Customize colors, icons, and animations to match your app's branding and
   design.
 
+
+
+## Configuration
+
+Available on [Maven Central](https://central.sonatype.com/artifact/io.github.canopas/bottombar).
+
+Add the dependency
+```gradle
+    implementation 'io.github.canopas:bottombar:1.0.0'
+
+```
+
+
 ## Sample Usage
 
 Integrating **AnimatedBottomBarCompose** into your Android app is a breeze! Follow these simple

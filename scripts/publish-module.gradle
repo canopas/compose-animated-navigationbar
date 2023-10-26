@@ -1,18 +1,6 @@
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-tasks.register('androidSourcesJar', Jar) {
-    archiveClassifier.set('sources')
-    if (project.plugins.findPlugin("com.android.library")) {
-        from android.sourceSets.main.java.srcDirs
-    } else {
-        from sourceSets.main.java.srcDirs
-    }
-}
-
-artifacts {
-    archives androidSourcesJar
-}
 group = PUBLISH_GROUP_ID
 version = rootProject.ext["publish_version"]
 
@@ -32,8 +20,6 @@ afterEvaluate {
                 } else {
                     artifact("$buildDir/libs/${project.getName()}-${version}.jar")
                 }
-
-                artifact androidSourcesJar
 
                 // Mostly self-explanatory metadata
                 pom {
@@ -58,7 +44,7 @@ afterEvaluate {
                     scm {
                         connection = 'scm:git:github.com/canopas/AnimatedBottomBarCompose.git'
                         developerConnection = 'scm:git:ssh://github.com/canopas/AnimatedBottomBarCompose.git'
-                        url = 'https://github.com/canopas/AnimatedBottomBarCompose.git'
+                        url = 'https://github.com/canopas/AnimatedBottomBarCompose'
                     }
                 }
             }

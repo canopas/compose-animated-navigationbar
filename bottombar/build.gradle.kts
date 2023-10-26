@@ -4,8 +4,8 @@ plugins {
 }
 
 ext {
-    set("PUBLISH_GROUP_ID", "com.canopas.AnimatedBottomBarCompose")
-    set("PUBLISH_ARTIFACT_ID", "animatedbottombarcompose")
+    set("PUBLISH_GROUP_ID", "io.github.canopas")
+    set("PUBLISH_ARTIFACT_ID", "bottombar")
 }
 
 apply{
@@ -57,6 +57,7 @@ android {
     publishing {
         singleVariant("release") {
             withJavadocJar()
+            withSourcesJar()
         }
     }
 }

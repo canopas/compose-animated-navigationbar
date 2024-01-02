@@ -8,20 +8,16 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                // The coordinates of the library, being set from variables that
-                // we'll set up later
                 groupId PUBLISH_GROUP_ID
                 artifactId PUBLISH_ARTIFACT_ID
                 version rootProject.ext["publish_version"]
 
-                /// Two artifacts, the `aar` (or `jar`) and the sources
                 if (project.plugins.findPlugin("com.android.library")) {
                     from components.release
                 } else {
                     artifact("$buildDir/libs/${project.getName()}-${version}.jar")
                 }
 
-                // Mostly self-explanatory metadata
                 pom {
                     name = PUBLISH_ARTIFACT_ID
                     description = 'Bottom bar in Jetpack Compose with customizable styles & animations'

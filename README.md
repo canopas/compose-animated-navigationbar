@@ -51,11 +51,11 @@ Android app, enhancing the user experience.
 
 ## Configuration
 
-Available on [Maven Central](https://central.sonatype.com/artifact/io.github.canopas/bottombar).
+Available on [Maven Central](https://central.sonatype.com/artifact/com.canopas.compose-animated-navigationbar/bottombar).
 
 Add the dependency
 ```gradle
-    implementation 'io.github.canopas:bottombar:1.0.0'
+    implementation 'com.canopascompose-animated-navigationbar:bottombar:1.0.0'
 
 ```
 

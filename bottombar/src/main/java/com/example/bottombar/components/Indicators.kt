@@ -25,7 +25,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.bottombar.R
+import com.canopas.lib.bottombar.R
 
 @Composable
 internal fun LineIndicator(

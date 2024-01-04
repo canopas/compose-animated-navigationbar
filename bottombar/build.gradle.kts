@@ -13,7 +13,7 @@ apply{
 }
 
 android {
-    namespace = "com.canopas.lib.bottombar"
+    namespace = "com.example.bottombar"
     compileSdk = 34
 
     defaultConfig {

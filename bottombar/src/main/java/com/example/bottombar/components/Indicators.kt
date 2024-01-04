@@ -20,7 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.canopas.lib.bottombar.R
+import com.example.bottombar.R
 import com.example.bottombar.utils.customWormTransition
 
 @Composable

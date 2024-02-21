@@ -57,7 +57,7 @@ Available on [Maven Central](https://central.sonatype.com/artifact/com.canopas.c
 
 Add the dependency
 ```gradle
-    implementation 'com.canopas.compose-animated-navigationbar:bottombar:1.0.0'
+    implementation 'com.canopas.compose-animated-navigationbar:bottombar:1.0.1'
 
 ```
 

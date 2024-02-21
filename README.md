@@ -1,3 +1,5 @@
+<p align="center"> <a href="https://canopas.com/contact"><img src="./cta/cta_banner.png" alt="cta_banner"></a></p>
+
 # AnimatedBottomBarCompose
 
 **AnimatedBottomBarCompose** is a Jetpack Compose library that simplifies the creation of stylish
@@ -10,13 +12,13 @@ Android app, enhancing the user experience.
        <b>LINE INDICATOR</b>
        <br />
        <br />
-      <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/ed9d5ac1-dc6f-4b91-8c98-e6c8826f4736"  width="80%" height="80%">
+      <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/ed9d5ac1-dc6f-4b91-8c98-e6c8826f4736"  width="80%" height="80%" alt="">
     </td>
     <td align="center">
        <b>FILLED INDICATOR</b>
        <br />
        <br />
-      <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/75622692-fded-4891-9d32-f2540e8e4744"  width="80%" height="80%">
+      <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/75622692-fded-4891-9d32-f2540e8e4744"  width="80%" height="80%" alt="">
     </td>
 
   </tr>
@@ -26,13 +28,13 @@ Android app, enhancing the user experience.
        <b>DOT INDICATOR</b>
        <br />
        <br />
-     <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/b0dc3420-9c79-4f05-892f-1c67ebea5817"  width="80%" height="80%">
+     <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/b0dc3420-9c79-4f05-892f-1c67ebea5817"  width="80%" height="80%" alt="">
     </td>
     <td align="center">
        <b>WORM INDICATOR</b>
        <br />
        <br />
-      <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/8b16d97a-a1c8-40ed-a6be-5fb05fbcd909"  width="80%" height="80%">
+      <img src="https://github.com/canopas/AnimatedBottomBarCompose/assets/98312779/8b16d97a-a1c8-40ed-a6be-5fb05fbcd909"  width="80%" height="80%" alt="">
     </td>
 </tr>
 </table>
@@ -124,6 +126,8 @@ the [Github Issues](https://github.com/canopas/AnimatedBottomBarCompose/issues)
 **AnimatedBottomBarCompose** is owned and maintained by the [Canopas team](https://canopas.com/).
 For project updates and releases, you can follow them on Twitter
 at [@canopassoftware](https://twitter.com/canopassoftware).
+
+<a href="https://canopas.com/contact"><img src="./cta/cta_btn.png" width=300></a>
 
 # Licence
 

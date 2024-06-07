@@ -72,13 +72,13 @@ internal fun RowScope.NavigationBarItem(
     iconColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     textColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     label: String,
-    visibleItem: VisibleItem = VisibleItem.LABEL
+    visibleItem: VisibleItem = VisibleItem.LABEL,
 ) {
     var animationState by remember { mutableStateOf(AnimationState.Start) }
     val scaleAnimation: Float by animateFloatAsState(
         if (animationState == AnimationState.Start) DefaultScale else SmallScale,
         tween(easing = LinearEasing),
-        label = ""
+        label = "",
     )
 
     LaunchedEffect(key1 = selected, key2 = Unit, block = {
@@ -89,53 +89,61 @@ internal fun RowScope.NavigationBarItem(
     Surface(
         color = containerColor,
         contentColor = contentColor,
-        modifier = Modifier
-            .weight(1f)
-            .clickable(
-                onClick = {
-                    onClick()
-                },
-                interactionSource = MutableInteractionSource(),
-                indication = rememberRipple(bounded = false, radius = 30.dp)
-            )
+        modifier =
+            Modifier
+                .weight(1f)
+                .clickable(
+                    onClick = {
+                        onClick()
+                    },
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberRipple(bounded = false, radius = 30.dp),
+                ),
     ) {
         Column(
-            modifier = modifier
-                .fillMaxHeight()
-                .scale(scaleAnimation),
+            modifier =
+                modifier
+                    .fillMaxHeight()
+                    .scale(scaleAnimation),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             AnimatedVisibility(
                 visible = (visibleItem == VisibleItem.BOTH && !selected),
-                enter = fadeIn() + slideInVertically(
-                    tween(easing = LinearEasing)
-                ) { fullHeight -> -fullHeight },
-                exit = slideOutVertically(
-                    tween(easing = LinearEasing)
-                ) { fullHeight -> -fullHeight } + fadeOut()
+                enter =
+                    fadeIn() +
+                        slideInVertically(
+                            tween(easing = LinearEasing),
+                        ) { fullHeight -> -fullHeight },
+                exit =
+                    slideOutVertically(
+                        tween(easing = LinearEasing),
+                    ) { fullHeight -> -fullHeight } + fadeOut(),
             ) {
                 Icon(
                     painter = iconPainter,
                     contentDescription = null,
-                    tint = iconColor
+                    tint = iconColor,
                 )
             }
 
             AnimatedVisibility(
                 visible = (visibleItem == VisibleItem.BOTH && selected),
-                enter = fadeIn() + slideInVertically(
-                    tween(easing = LinearEasing)
-                ) { fullHeight -> fullHeight },
-                exit = slideOutVertically(
-                    tween(easing = LinearEasing)
-                ) { fullHeight -> fullHeight } + fadeOut()
+                enter =
+                    fadeIn() +
+                        slideInVertically(
+                            tween(easing = LinearEasing),
+                        ) { fullHeight -> fullHeight },
+                exit =
+                    slideOutVertically(
+                        tween(easing = LinearEasing),
+                    ) { fullHeight -> fullHeight } + fadeOut(),
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(
                         painter = iconPainter,
                         contentDescription = null,
-                        tint = iconColor
+                        tint = iconColor,
                     )
 
                     Text(
@@ -144,7 +152,7 @@ internal fun RowScope.NavigationBarItem(
                         style = MaterialTheme.typography.labelMedium,
                         maxLines = 1,
                         softWrap = false,
-                        overflow = TextOverflow.Clip
+                        overflow = TextOverflow.Clip,
                     )
                 }
             }
@@ -153,36 +161,42 @@ internal fun RowScope.NavigationBarItem(
 
             AnimatedVisibility(
                 visible = if (visibleItem == VisibleItem.LABEL) !selected else selected,
-                enter = fadeIn() + slideInVertically(
-                    tween(
-                        easing = LinearEasing
-                    )
-                ) { fullHeight -> -fullHeight },
-                exit = slideOutVertically(
-                    tween(
-                        easing = LinearEasing
-                    )
-                ) { fullHeight -> -fullHeight } + fadeOut()
+                enter =
+                    fadeIn() +
+                        slideInVertically(
+                            tween(
+                                easing = LinearEasing,
+                            ),
+                        ) { fullHeight -> -fullHeight },
+                exit =
+                    slideOutVertically(
+                        tween(
+                            easing = LinearEasing,
+                        ),
+                    ) { fullHeight -> -fullHeight } + fadeOut(),
             ) {
                 Icon(
                     painter = iconPainter,
                     contentDescription = null,
-                    tint = iconColor
+                    tint = iconColor,
                 )
             }
 
             AnimatedVisibility(
                 visible = if (visibleItem == VisibleItem.LABEL) selected else !selected,
-                enter = fadeIn() + slideInVertically(
-                    tween(
-                        easing = LinearEasing
-                    )
-                ) { fullHeight -> fullHeight },
-                exit = slideOutVertically(
-                    tween(
-                        easing = LinearEasing
-                    )
-                ) { fullHeight -> fullHeight } + fadeOut()
+                enter =
+                    fadeIn() +
+                        slideInVertically(
+                            tween(
+                                easing = LinearEasing,
+                            ),
+                        ) { fullHeight -> fullHeight },
+                exit =
+                    slideOutVertically(
+                        tween(
+                            easing = LinearEasing,
+                        ),
+                    ) { fullHeight -> fullHeight } + fadeOut(),
             ) {
                 Text(
                     text = label,
@@ -190,7 +204,7 @@ internal fun RowScope.NavigationBarItem(
                     style = MaterialTheme.typography.labelMedium,
                     maxLines = 1,
                     softWrap = false,
-                    overflow = TextOverflow.Clip
+                    overflow = TextOverflow.Clip,
                 )
             }
         }
@@ -212,45 +226,48 @@ internal fun NavigationBarItem(
     textColor: Color,
     label: String,
     activeIndicatorColor: Color,
-    inactiveIndicatorColor: Color
+    inactiveIndicatorColor: Color,
 ) {
     val color by animateColorAsState(
         targetValue = if (selected) activeIndicatorColor else inactiveIndicatorColor,
         animationSpec = tween(easing = LinearEasing),
-        label = ""
+        label = "",
     )
 
     BoxWithConstraints(
-        modifier = modifier
-            .fillMaxHeight(),
-        contentAlignment = Alignment.Center
+        modifier =
+            modifier
+                .fillMaxHeight(),
+        contentAlignment = Alignment.Center,
     ) {
         Surface(
             color = color,
             contentColor = contentColor,
             shape = RoundedCornerShape(maxHeight / 2),
-            modifier = Modifier.clickable(
-                interactionSource = MutableInteractionSource(),
-                indication = rememberRipple(bounded = false, radius = 30.dp)
-            ) { onClick() }
+            modifier =
+                Modifier.clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberRipple(bounded = false, radius = 30.dp),
+                ) { onClick() },
         ) {
             Row(
-                modifier = Modifier
-                    .padding(
-                        vertical = maxHeight / 12,
-                        horizontal = maxHeight / 4
-                    ),
+                modifier =
+                    Modifier
+                        .padding(
+                            vertical = maxHeight / 12,
+                            horizontal = maxHeight / 4,
+                        ),
                 horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
                     modifier = Modifier.height(this@BoxWithConstraints.maxHeight / 2),
                     painter = iconPainter,
                     contentDescription = null,
-                    tint = iconColor
+                    tint = iconColor,
                 )
                 AnimatedVisibility(
-                    visible = selected
+                    visible = selected,
                 ) {
                     Text(
                         text = label,
@@ -259,7 +276,7 @@ internal fun NavigationBarItem(
                         maxLines = 1,
                         softWrap = false,
                         overflow = TextOverflow.Clip,
-                        modifier = Modifier.padding(horizontal = 4.dp)
+                        modifier = Modifier.padding(horizontal = 4.dp),
                     )
                 }
             }
@@ -281,27 +298,27 @@ internal fun RowScope.NavigationBarItem(
     contentColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     iconColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     textColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
-    label: String
+    label: String,
 ) {
     var animationState by remember { mutableStateOf(AnimationState.Start) }
     val scaleAnimation: Float by animateFloatAsState(
         if (animationState == AnimationState.Start) DefaultScale else SmallScale,
         tween(durationMillis = LongDuration, delayMillis = ShortDuration, easing = LinearEasing),
-        label = ""
+        label = "",
     )
     val alphaAnimation: Float by animateFloatAsState(
         if (animationState == AnimationState.Start) LowestAlpha else DefaultAlpha,
         tween(
             durationMillis = if (animationState == AnimationState.Start) MediumDuration else LongDuration,
             delayMillis = if (animationState == AnimationState.Start) 0 else ShortDuration,
-            easing = LinearEasing
+            easing = LinearEasing,
         ),
-        label = ""
+        label = "",
     )
     val paddingAnimation: Dp by animateDpAsState(
         if (animationState == AnimationState.Start) 20.dp else 16.dp,
         tween(durationMillis = LongDuration, delayMillis = ShortDuration, easing = LinearEasing),
-        label = ""
+        label = "",
     )
     LaunchedEffect(key1 = selected, key2 = Unit, block = {
         animationState = if (selected) AnimationState.Finish else AnimationState.Start
@@ -310,28 +327,31 @@ internal fun RowScope.NavigationBarItem(
     Surface(
         color = containerColor,
         contentColor = contentColor,
-        modifier = Modifier
-            .clickable(
-                onClick = {
-                    onClick()
-                },
-                interactionSource = MutableInteractionSource(),
-                indication = rememberRipple(bounded = false, radius = 30.dp)
-            )
-            .weight(1f)
+        modifier =
+            Modifier
+                .clickable(
+                    onClick = {
+                        onClick()
+                    },
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberRipple(bounded = false, radius = 30.dp),
+                )
+                .weight(1f),
     ) {
         Box(
-            modifier = modifier
-                .fillMaxHeight(),
-            contentAlignment = Alignment.TopCenter
+            modifier =
+                modifier
+                    .fillMaxHeight(),
+            contentAlignment = Alignment.TopCenter,
         ) {
             Icon(
                 painter = iconPainter,
                 contentDescription = null,
                 tint = iconColor,
-                modifier = Modifier
-                    .scale(scaleAnimation)
-                    .padding(top = paddingAnimation)
+                modifier =
+                    Modifier
+                        .scale(scaleAnimation)
+                        .padding(top = paddingAnimation),
             )
 
             Text(
@@ -341,15 +361,15 @@ internal fun RowScope.NavigationBarItem(
                 maxLines = 1,
                 softWrap = false,
                 overflow = TextOverflow.Clip,
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .alpha(alphaAnimation)
-                    .padding(bottom = 16.dp)
+                modifier =
+                    Modifier
+                        .align(Alignment.BottomCenter)
+                        .alpha(alphaAnimation)
+                        .padding(bottom = 12.dp),
             )
         }
     }
 }
-
 
 /**
  * A composable function that creates view for **STYLE4** where selected item will
@@ -369,13 +389,13 @@ internal fun RowScope.NavigationBarItem(
     val scaleAnimation: Float by animateFloatAsState(
         if (animationState == AnimationState.Start) DefaultScale else LargeScale,
         tween(durationMillis = MediumDuration, delayMillis = ShortDuration, easing = LinearEasing),
-        label = ""
+        label = "",
     )
 
     val color by animateColorAsState(
         targetValue = if (selected) iconColor else iconColor.copy(0.5f),
         animationSpec = tween(easing = LinearEasing),
-        label = ""
+        label = "",
     )
 
     LaunchedEffect(key1 = selected, key2 = Unit, block = {
@@ -385,26 +405,28 @@ internal fun RowScope.NavigationBarItem(
     Surface(
         color = containerColor,
         contentColor = contentColor,
-        modifier = Modifier
-            .clickable(
-                onClick = {
-                    onClick()
-                },
-                interactionSource = MutableInteractionSource(),
-                indication = rememberRipple(bounded = false, radius = 30.dp)
-            )
-            .weight(1f)
+        modifier =
+            Modifier
+                .clickable(
+                    onClick = {
+                        onClick()
+                    },
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberRipple(bounded = false, radius = 30.dp),
+                )
+                .weight(1f),
     ) {
         Box(
-            modifier = modifier
-                .fillMaxHeight()
-                .scale(scaleAnimation),
-            contentAlignment = Alignment.Center
+            modifier =
+                modifier
+                    .fillMaxHeight()
+                    .scale(scaleAnimation),
+            contentAlignment = Alignment.Center,
         ) {
             Icon(
                 painter = iconPainter,
                 contentDescription = null,
-                tint = color
+                tint = color,
             )
         }
     }
@@ -429,7 +451,7 @@ internal fun RowScope.NavigationBarItem(
     val scaleAnimation: Float by animateFloatAsState(
         if (animationState == AnimationState.Start) LowestAlpha else DefaultAlpha,
         tween(durationMillis = MediumDuration, delayMillis = ShortDuration, easing = LinearEasing),
-        label = ""
+        label = "",
     )
 
     LaunchedEffect(key1 = selected, key2 = Unit, block = {
@@ -439,35 +461,37 @@ internal fun RowScope.NavigationBarItem(
     Surface(
         color = containerColor,
         contentColor = contentColor,
-        modifier = Modifier
-            .clickable(
-                onClick = {
-                    onClick()
-                },
-                interactionSource = MutableInteractionSource(),
-                indication = rememberRipple(bounded = false, radius = 30.dp)
-            )
-            .weight(1f)
+        modifier =
+            Modifier
+                .clickable(
+                    onClick = {
+                        onClick()
+                    },
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberRipple(bounded = false, radius = 30.dp),
+                )
+                .weight(1f),
     ) {
         Box(
-            modifier = modifier
-                .fillMaxHeight(),
-            contentAlignment = Alignment.Center
+            modifier =
+                modifier
+                    .fillMaxHeight(),
+            contentAlignment = Alignment.Center,
         ) {
-
             if (selected) {
                 Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .scale(scaleAnimation)
-                        .background(glowingBackground)
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .scale(scaleAnimation)
+                            .background(glowingBackground),
                 )
             }
 
             Icon(
                 painter = iconPainter,
                 contentDescription = null,
-                tint = iconColor
+                tint = iconColor,
             )
         }
     }

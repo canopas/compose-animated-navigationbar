@@ -38,37 +38,39 @@ fun Screen2(navigationItems: List<MainNavigation>) {
     var indicatorStyle: IndicatorStyle by remember {
         mutableStateOf(IndicatorStyle.WORM)
     }
-    val itemStyles = listOf(
-        ItemStyle.STYLE1,
-        ItemStyle.STYLE2,
-        ItemStyle.STYLE3,
-        ItemStyle.STYLE4,
-        ItemStyle.STYLE5
-    )
+    val itemStyles =
+        listOf(
+            ItemStyle.STYLE1,
+            ItemStyle.STYLE2,
+            ItemStyle.STYLE3,
+            ItemStyle.STYLE4,
+            ItemStyle.STYLE5,
+        )
     val indicatorStyles =
         listOf(
             IndicatorStyle.NONE,
             IndicatorStyle.LINE,
             IndicatorStyle.DOT,
-            IndicatorStyle.WORM
+            IndicatorStyle.WORM,
         )
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
     ) {
-
         Spacer(modifier = Modifier.height(50.dp))
 
         Text(
             text = "Item Style:",
             style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(horizontal = 8.dp)
+            modifier = Modifier.padding(horizontal = 8.dp),
         )
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp),
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 itemStyles.take(3).forEach {
@@ -91,12 +93,13 @@ fun Screen2(navigationItems: List<MainNavigation>) {
         Text(
             text = "Indicator Style:",
             style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(horizontal = 8.dp)
+            modifier = Modifier.padding(horizontal = 8.dp),
         )
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp),
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 indicatorStyles.take(2).forEach {
@@ -123,7 +126,7 @@ fun Screen2(navigationItems: List<MainNavigation>) {
             itemSize = navigationItems.size,
             indicatorStyle = if (itemStyle != ItemStyle.STYLE2) indicatorStyle else IndicatorStyle.NONE,
             containerColor = Color.Transparent,
-            indicatorColor = Color.Red
+            indicatorColor = Color.Red,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -137,13 +140,14 @@ fun Screen2(navigationItems: List<MainNavigation>) {
                     iconColor = if (selected) Color.Red else Color.Black,
                     textColor = if (selected) Color.Red else Color.Black,
                     itemStyle = itemStyle,
-                    glowingBackground = Brush.radialGradient(
-                        listOf(
-                            Color.Red.copy(0.5f),
-                            Color.Transparent,
-                            Color.Transparent
-                        )
-                    )
+                    glowingBackground =
+                        Brush.radialGradient(
+                            listOf(
+                                Color.Red.copy(0.5f),
+                                Color.Transparent,
+                                Color.Transparent,
+                            ),
+                        ),
                 )
             }
         }
@@ -154,7 +158,7 @@ fun Screen2(navigationItems: List<MainNavigation>) {
             selectedItem = selectedItem,
             itemSize = navigationItems.size,
             indicatorStyle = if (itemStyle != ItemStyle.STYLE2) indicatorStyle else IndicatorStyle.NONE,
-            indicatorColor = Color.White
+            indicatorColor = Color.White,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -168,13 +172,14 @@ fun Screen2(navigationItems: List<MainNavigation>) {
                     iconColor = if (selected) Color.White else Color.Black,
                     textColor = if (selected) Color.White else Color.Black,
                     itemStyle = itemStyle,
-                    glowingBackground = Brush.radialGradient(
-                        listOf(
-                            Color.Black,
-                            Color.Transparent,
-                            Color.Transparent
-                        )
-                    )
+                    glowingBackground =
+                        Brush.radialGradient(
+                            listOf(
+                                Color.Black,
+                                Color.Transparent,
+                                Color.Transparent,
+                            ),
+                        ),
                 )
             }
         }

@@ -29,13 +29,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AnimatedBottomBarComposeTheme {
-
                 val navController = rememberNavController()
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route
-                val navigationItems = MainNavigation::class.nestedClasses.map {
-                    it.objectInstance as MainNavigation
-                }
+                val navigationItems =
+                    MainNavigation::class.nestedClasses.map {
+                        it.objectInstance as MainNavigation
+                    }
                 var selectedItem by remember { mutableIntStateOf(0) }
 
                 Scaffold(
@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
                             selectedItem = selectedItem,
                             itemSize = navigationItems.take(3).size,
                             containerColor = Color.LightGray,
-                            indicatorStyle = IndicatorStyle.DOT
+                            indicatorStyle = IndicatorStyle.DOT,
                         ) {
                             navigationItems.take(3).forEachIndexed { index, navigationItem ->
                                 BottomBarItem(
@@ -66,15 +66,15 @@ class MainActivity : ComponentActivity() {
                                     },
                                     imageVector = navigationItem.icon,
                                     label = navigationItem.title,
-                                    containerColor = Color.Transparent
+                                    containerColor = Color.Transparent,
                                 )
                             }
                         }
-                    }
+                    },
                 ) {
                     NavHost(
                         navController = navController,
-                        startDestination = MainNavigation.ScreenA.route
+                        startDestination = MainNavigation.ScreenA.route,
                     ) {
                         composable(MainNavigation.ScreenA.route) {
                             Screen1(navigationItems)

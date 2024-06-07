@@ -22,5 +22,5 @@ enum class ItemStyle {
     STYLE2,
     STYLE3,
     STYLE4,
-    STYLE5
+    STYLE5,
 }

@@ -32,22 +32,23 @@ import com.example.bottombar.model.VisibleItem
 
 @Composable
 fun Screen1(navigationItems: List<MainNavigation>) {
-
     var selectedItem by remember { mutableIntStateOf(0) }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.Top
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.Top,
     ) {
         Text(
             text = "**Checkout INDICATORS with different STYLES(animations)**",
             style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 20.dp),
-            textAlign = TextAlign.Center
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(top = 20.dp),
+            textAlign = TextAlign.Center,
         )
         Spacer(modifier = Modifier.height(50.dp))
 
@@ -55,7 +56,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             text = "LINE INDICATOR",
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier.fillMaxWidth(),
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
         Spacer(modifier = Modifier.height(25.dp))
         AnimatedBottomBar(
@@ -63,7 +64,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             itemSize = navigationItems.size,
             indicatorStyle = IndicatorStyle.LINE,
             containerShape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp),
-            containerColor = MaterialTheme.colorScheme.secondaryContainer
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -75,11 +76,10 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     imageVector = navigationItem.icon,
                     label = navigationItem.title,
                     visibleItem = VisibleItem.ICON,
-                    itemStyle = ItemStyle.STYLE1
+                    itemStyle = ItemStyle.STYLE1,
                 )
             }
         }
-
 
         Spacer(modifier = Modifier.height(25.dp))
 
@@ -88,7 +88,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             itemSize = navigationItems.size,
             indicatorStyle = IndicatorStyle.LINE,
             containerShape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp),
-            containerColor = MaterialTheme.colorScheme.secondaryContainer
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -100,7 +100,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     imageVector = navigationItem.icon,
                     label = navigationItem.title,
                     visibleItem = VisibleItem.LABEL,
-                    itemStyle = ItemStyle.STYLE1
+                    itemStyle = ItemStyle.STYLE1,
                 )
             }
         }
@@ -112,7 +112,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             itemSize = navigationItems.size,
             indicatorStyle = IndicatorStyle.LINE,
             containerShape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp),
-            containerColor = MaterialTheme.colorScheme.secondaryContainer
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -124,7 +124,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     imageVector = navigationItem.icon,
                     label = navigationItem.title,
                     visibleItem = VisibleItem.BOTH,
-                    itemStyle = ItemStyle.STYLE1
+                    itemStyle = ItemStyle.STYLE1,
                 )
             }
         }
@@ -136,7 +136,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             indicatorStyle = IndicatorStyle.LINE,
             containerShape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp),
             indicatorDirection = IndicatorDirection.BOTTOM,
-            containerColor = MaterialTheme.colorScheme.secondaryContainer
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -148,7 +148,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     imageVector = navigationItem.icon,
                     label = navigationItem.title,
                     visibleItem = VisibleItem.ICON,
-                    itemStyle = ItemStyle.STYLE3
+                    itemStyle = ItemStyle.STYLE3,
                 )
             }
         }
@@ -161,7 +161,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             indicatorStyle = IndicatorStyle.LINE,
             containerShape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp),
             indicatorDirection = IndicatorDirection.BOTTOM,
-            containerColor = MaterialTheme.colorScheme.secondaryContainer
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -173,7 +173,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     imageVector = navigationItem.icon,
                     label = navigationItem.title,
                     visibleItem = VisibleItem.LABEL,
-                    itemStyle = ItemStyle.STYLE4
+                    itemStyle = ItemStyle.STYLE4,
                 )
             }
         }
@@ -186,7 +186,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             indicatorStyle = IndicatorStyle.LINE,
             containerShape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp),
             indicatorDirection = IndicatorDirection.BOTTOM,
-            containerColor = MaterialTheme.colorScheme.secondaryContainer
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -198,7 +198,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     imageVector = navigationItem.icon,
                     label = navigationItem.title,
                     visibleItem = VisibleItem.BOTH,
-                    itemStyle = ItemStyle.STYLE5
+                    itemStyle = ItemStyle.STYLE5,
                 )
             }
         }
@@ -209,14 +209,14 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             text = "DOT INDICATOR",
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier.fillMaxWidth(),
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
         Spacer(modifier = Modifier.height(25.dp))
         AnimatedBottomBar(
             selectedItem = selectedItem,
             itemSize = navigationItems.size,
             containerColor = MaterialTheme.colorScheme.errorContainer,
-            indicatorStyle = IndicatorStyle.DOT
+            indicatorStyle = IndicatorStyle.DOT,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -227,7 +227,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     },
                     imageVector = navigationItem.icon,
                     label = navigationItem.title,
-                    itemStyle = ItemStyle.STYLE1
+                    itemStyle = ItemStyle.STYLE1,
                 )
             }
         }
@@ -237,7 +237,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             selectedItem = selectedItem,
             itemSize = navigationItems.size,
             containerColor = MaterialTheme.colorScheme.errorContainer,
-            indicatorStyle = IndicatorStyle.DOT
+            indicatorStyle = IndicatorStyle.DOT,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -250,7 +250,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     label = navigationItem.title,
                     iconColor = if (selected) Color.Black else Color.Black.copy(0.8f),
                     textColor = if (selected) Color.Black else Color.Black.copy(0.8f),
-                    itemStyle = ItemStyle.STYLE3
+                    itemStyle = ItemStyle.STYLE3,
                 )
             }
         }
@@ -260,7 +260,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             selectedItem = selectedItem,
             itemSize = navigationItems.size,
             containerColor = MaterialTheme.colorScheme.errorContainer,
-            indicatorStyle = IndicatorStyle.DOT
+            indicatorStyle = IndicatorStyle.DOT,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -274,7 +274,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     iconColor = if (selected) Color.Black else Color.Black.copy(0.8f),
                     textColor = if (selected) Color.Black else Color.Black.copy(0.8f),
                     itemStyle = ItemStyle.STYLE4,
-                    activeIndicatorColor = Color.White
+                    activeIndicatorColor = Color.White,
                 )
             }
         }
@@ -284,7 +284,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             selectedItem = selectedItem,
             itemSize = navigationItems.size,
             containerColor = MaterialTheme.colorScheme.errorContainer,
-            indicatorStyle = IndicatorStyle.DOT
+            indicatorStyle = IndicatorStyle.DOT,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -298,7 +298,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     iconColor = if (selected) Color.Black else Color.Black.copy(0.8f),
                     textColor = if (selected) Color.Black else Color.Black.copy(0.8f),
                     itemStyle = ItemStyle.STYLE5,
-                    activeIndicatorColor = Color.White
+                    activeIndicatorColor = Color.White,
                 )
             }
         }
@@ -309,14 +309,14 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             text = "WORM INDICATOR",
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier.fillMaxWidth(),
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
         Spacer(modifier = Modifier.height(25.dp))
         AnimatedBottomBar(
             selectedItem = selectedItem,
             itemSize = navigationItems.size,
             containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-            indicatorStyle = IndicatorStyle.WORM
+            indicatorStyle = IndicatorStyle.WORM,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -329,7 +329,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     label = navigationItem.title,
                     iconColor = if (selected) Color.Black else Color.Black.copy(0.8f),
                     textColor = if (selected) Color.Black else Color.Black.copy(0.8f),
-                    itemStyle = ItemStyle.STYLE1
+                    itemStyle = ItemStyle.STYLE1,
                 )
             }
         }
@@ -339,7 +339,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             selectedItem = selectedItem,
             itemSize = navigationItems.size,
             containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-            indicatorStyle = IndicatorStyle.WORM
+            indicatorStyle = IndicatorStyle.WORM,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -352,7 +352,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     label = navigationItem.title,
                     iconColor = if (selected) Color.Black else Color.Black.copy(0.8f),
                     textColor = if (selected) Color.Black else Color.Black.copy(0.8f),
-                    itemStyle = ItemStyle.STYLE3
+                    itemStyle = ItemStyle.STYLE3,
                 )
             }
         }
@@ -362,7 +362,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             selectedItem = selectedItem,
             itemSize = navigationItems.size,
             containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-            indicatorStyle = IndicatorStyle.WORM
+            indicatorStyle = IndicatorStyle.WORM,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -375,7 +375,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     label = navigationItem.title,
                     iconColor = if (selected) Color.Black else Color.Black.copy(0.8f),
                     textColor = if (selected) Color.Black else Color.Black.copy(0.8f),
-                    itemStyle = ItemStyle.STYLE4
+                    itemStyle = ItemStyle.STYLE4,
                 )
             }
         }
@@ -385,7 +385,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             selectedItem = selectedItem,
             itemSize = navigationItems.size,
             containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-            indicatorStyle = IndicatorStyle.WORM
+            indicatorStyle = IndicatorStyle.WORM,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -399,7 +399,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     iconColor = if (selected) Color.Black else Color.Black.copy(0.8f),
                     textColor = if (selected) Color.Black else Color.Black.copy(0.8f),
                     itemStyle = ItemStyle.STYLE5,
-                    activeIndicatorColor = Color.White
+                    activeIndicatorColor = Color.White,
                 )
             }
         }
@@ -410,7 +410,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             text = "FILLED INDICATOR",
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier.fillMaxWidth(),
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
         Spacer(modifier = Modifier.height(25.dp))
         AnimatedBottomBar(
@@ -418,7 +418,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             itemSize = navigationItems.size,
             containerColor = MaterialTheme.colorScheme.secondaryContainer,
             indicatorStyle = IndicatorStyle.FILLED,
-            indicatorColor = MaterialTheme.colorScheme.background
+            indicatorColor = MaterialTheme.colorScheme.background,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -429,7 +429,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     },
                     imageVector = navigationItem.icon,
                     label = navigationItem.title,
-                    itemStyle = ItemStyle.STYLE1
+                    itemStyle = ItemStyle.STYLE1,
                 )
             }
         }
@@ -440,7 +440,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             itemSize = navigationItems.size,
             containerColor = MaterialTheme.colorScheme.secondaryContainer,
             indicatorStyle = IndicatorStyle.FILLED,
-            indicatorColor = MaterialTheme.colorScheme.background
+            indicatorColor = MaterialTheme.colorScheme.background,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -451,7 +451,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     },
                     imageVector = navigationItem.icon,
                     label = navigationItem.title,
-                    itemStyle = ItemStyle.STYLE3
+                    itemStyle = ItemStyle.STYLE3,
                 )
             }
         }
@@ -462,7 +462,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             itemSize = navigationItems.size,
             containerColor = MaterialTheme.colorScheme.secondaryContainer,
             indicatorStyle = IndicatorStyle.FILLED,
-            indicatorColor = MaterialTheme.colorScheme.background
+            indicatorColor = MaterialTheme.colorScheme.background,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -473,7 +473,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     },
                     imageVector = navigationItem.icon,
                     label = navigationItem.title,
-                    itemStyle = ItemStyle.STYLE4
+                    itemStyle = ItemStyle.STYLE4,
                 )
             }
         }
@@ -484,7 +484,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
             itemSize = navigationItems.size,
             containerColor = MaterialTheme.colorScheme.secondaryContainer,
             indicatorStyle = IndicatorStyle.FILLED,
-            indicatorColor = MaterialTheme.colorScheme.background
+            indicatorColor = MaterialTheme.colorScheme.background,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -497,13 +497,14 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     label = navigationItem.title,
                     itemStyle = ItemStyle.STYLE5,
                     iconColor = if (selected) Color.White else Color.Black,
-                    glowingBackground = Brush.radialGradient(
-                        listOf(
-                            Color.Black,
-                            Color.Transparent,
-                            Color.Transparent
-                        )
-                    )
+                    glowingBackground =
+                        Brush.radialGradient(
+                            listOf(
+                                Color.Black,
+                                Color.Transparent,
+                                Color.Transparent,
+                            ),
+                        ),
                 )
             }
         }
@@ -512,7 +513,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
         AnimatedBottomBar(
             selectedItem = selectedItem,
             itemSize = navigationItems.size,
-            containerColor = MaterialTheme.colorScheme.secondaryContainer
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -526,7 +527,7 @@ fun Screen1(navigationItems: List<MainNavigation>) {
                     itemStyle = ItemStyle.STYLE2,
                     iconColor = if (selected) Color.Black else Color.White,
                     textColor = if (selected) Color.Black else Color.White,
-                    activeIndicatorColor = Color.White
+                    activeIndicatorColor = Color.White,
                 )
             }
         }

@@ -10,5 +10,5 @@ package com.example.bottombar.model
  */
 enum class IndicatorDirection {
     TOP,
-    BOTTOM
+    BOTTOM,
 }

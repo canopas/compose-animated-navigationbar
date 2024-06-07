@@ -30,17 +30,18 @@ internal fun LineIndicator(
     indicatorColor: Color,
     indicatorHeight: Dp,
     modifier: Modifier,
-    indicatorShape: RoundedCornerShape
+    indicatorShape: RoundedCornerShape,
 ) {
     Box(
-        modifier = modifier
-            .height(indicatorHeight)
-            .fillMaxWidth(1f / arraySize)
-            .offset(
-                x = indicatorOffset
-            )
-            .clip(shape = indicatorShape)
-            .background(indicatorColor, shape = indicatorShape)
+        modifier =
+            modifier
+                .height(indicatorHeight)
+                .fillMaxWidth(1f / arraySize)
+                .offset(
+                    x = indicatorOffset,
+                )
+                .clip(shape = indicatorShape)
+                .background(indicatorColor, shape = indicatorShape),
     )
 }
 
@@ -49,22 +50,24 @@ internal fun DotIndicator(
     indicatorOffset: Dp,
     arraySize: Int,
     indicatorColor: Color,
-    modifier: Modifier
+    modifier: Modifier,
 ) {
     Box(
-        modifier = modifier
-            .fillMaxWidth(1f / arraySize)
-            .offset(
-                x = indicatorOffset
-            )
+        modifier =
+            modifier
+                .fillMaxWidth(1f / arraySize)
+                .offset(
+                    x = indicatorOffset,
+                ),
     ) {
         Column(modifier = Modifier.align(Alignment.BottomCenter)) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_dot_indicator),
                 contentDescription = "",
                 tint = indicatorColor,
-                modifier = Modifier
-                    .size(8.dp)
+                modifier =
+                    Modifier
+                        .size(8.dp),
             )
             Spacer(modifier = Modifier.height(4.dp))
         }
@@ -76,18 +79,20 @@ internal fun WormIndicator(
     indicatorOffset: Dp,
     indicatorColor: Color,
     modifier: Modifier,
-    itemWidth: Dp
+    itemWidth: Dp,
 ) {
     Box(
-        modifier = modifier
-            .width(itemWidth)
+        modifier =
+            modifier
+                .width(itemWidth),
     ) {
         Box(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 4.dp)
-                .customWormTransition(indicatorOffset, indicatorColor, itemWidth)
-                .size(8.dp)
+            modifier =
+                Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 4.dp)
+                    .customWormTransition(indicatorOffset, indicatorColor, itemWidth)
+                    .size(8.dp),
         )
     }
 }
@@ -98,16 +103,17 @@ internal fun FilledIndicator(
     arraySize: Int,
     indicatorColor: Color,
     modifier: Modifier,
-    indicatorShape: RoundedCornerShape
+    indicatorShape: RoundedCornerShape,
 ) {
     Box(
-        modifier = modifier
-            .fillMaxWidth(1f / arraySize)
-            .offset(
-                x = indicatorOffset
-            )
-            .padding(vertical = 8.dp)
-            .clip(indicatorShape)
-            .background(indicatorColor, shape = indicatorShape)
+        modifier =
+            modifier
+                .fillMaxWidth(1f / arraySize)
+                .offset(
+                    x = indicatorOffset,
+                )
+                .padding(vertical = 8.dp)
+                .clip(indicatorShape)
+                .background(indicatorColor, shape = indicatorShape),
     )
 }

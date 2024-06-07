@@ -64,33 +64,40 @@ fun AnimatedBottomBar(
     indicatorStyle: IndicatorStyle = IndicatorStyle.NONE,
     indicatorColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     indicatorHeight: Dp = DEFAULT_INDICATOR_HEIGHT,
-    animationSpec: AnimationSpec<Dp> = spring(
-        dampingRatio = 1f,
-        stiffness = Spring.StiffnessMediumLow
-    ),
+    animationSpec: AnimationSpec<Dp> =
+        spring(
+            dampingRatio = 1f,
+            stiffness = Spring.StiffnessMediumLow,
+        ),
     indicatorDirection: IndicatorDirection = IndicatorDirection.TOP,
     indicatorShape: RoundedCornerShape = RoundedCornerShape(25.dp),
-    content: @Composable RowScope.() -> Unit
+    content: @Composable RowScope.() -> Unit,
 ) {
     Surface(
         color = containerColor,
         contentColor = contentColor,
         modifier = modifier,
-        shape = containerShape
+        shape = containerShape,
     ) {
         BoxWithConstraints(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = Dp(bottomBarHeight / (bottomBarHeight / 16)))
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = Dp(bottomBarHeight / (bottomBarHeight / 16))),
         ) {
             selectedItem?.let {
                 itemSize?.let {
                     val maxWidth = this.maxWidth
                     val indicatorOffset: Dp by animateDpAsState(
-                        targetValue = (maxWidth / (itemSize.takeIf { it != 0 }
-                            ?: 1)) * selectedItem,
+                        targetValue =
+                            (
+                                maxWidth / (
+                                    itemSize.takeIf { it != 0 }
+                                        ?: 1
+                                )
+                            ) * selectedItem,
                         animationSpec = animationSpec,
-                        label = "indicator"
+                        label = "indicator",
                     )
 
                     when (indicatorStyle) {
@@ -100,8 +107,9 @@ fun AnimatedBottomBar(
                                 indicatorOffset = indicatorOffset,
                                 arraySize = itemSize.takeIf { it != 0 } ?: 1,
                                 indicatorColor = indicatorColor,
-                                modifier = Modifier
-                                    .height(bottomBarHeight)
+                                modifier =
+                                    Modifier
+                                        .height(bottomBarHeight),
                             )
                         }
 
@@ -109,9 +117,10 @@ fun AnimatedBottomBar(
                             WormIndicator(
                                 indicatorOffset = indicatorOffset,
                                 indicatorColor = indicatorColor,
-                                modifier = Modifier
-                                    .height(bottomBarHeight),
-                                itemWidth = maxWidth / (itemSize.takeIf { it != 0 } ?: 1)
+                                modifier =
+                                    Modifier
+                                        .height(bottomBarHeight),
+                                itemWidth = maxWidth / (itemSize.takeIf { it != 0 } ?: 1),
                             )
                         }
 
@@ -121,14 +130,15 @@ fun AnimatedBottomBar(
                                 arraySize = itemSize.takeIf { it != 0 } ?: 1,
                                 indicatorHeight = indicatorHeight,
                                 indicatorColor = indicatorColor,
-                                modifier = Modifier
-                                    .conditional(indicatorDirection == IndicatorDirection.TOP) {
-                                        align(Alignment.TopStart)
-                                    }
-                                    .conditional(indicatorDirection == IndicatorDirection.BOTTOM) {
-                                        align(Alignment.BottomStart)
-                                    },
-                                indicatorShape = indicatorShape
+                                modifier =
+                                    Modifier
+                                        .conditional(indicatorDirection == IndicatorDirection.TOP) {
+                                            align(Alignment.TopStart)
+                                        }
+                                        .conditional(indicatorDirection == IndicatorDirection.BOTTOM) {
+                                            align(Alignment.BottomStart)
+                                        },
+                                indicatorShape = indicatorShape,
                             )
                         }
 
@@ -137,9 +147,10 @@ fun AnimatedBottomBar(
                                 indicatorOffset = indicatorOffset,
                                 arraySize = itemSize.takeIf { it != 0 } ?: 1,
                                 indicatorColor = indicatorColor,
-                                modifier = Modifier
-                                    .height(bottomBarHeight),
-                                indicatorShape = indicatorShape
+                                modifier =
+                                    Modifier
+                                        .height(bottomBarHeight),
+                                indicatorShape = indicatorShape,
                             )
                         }
                     }
@@ -147,12 +158,13 @@ fun AnimatedBottomBar(
             }
 
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(bottomBarHeight)
-                    .selectableGroup(),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(bottomBarHeight)
+                        .selectableGroup(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                content = content
+                content = content,
             )
         }
     }

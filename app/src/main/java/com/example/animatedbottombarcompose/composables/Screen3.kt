@@ -34,30 +34,32 @@ fun Screen3(navigationItems: List<MainNavigation>) {
     var itemStyle: ItemStyle by remember {
         mutableStateOf(ItemStyle.STYLE3)
     }
-    val itemStyles = listOf(
-        ItemStyle.STYLE1,
-        ItemStyle.STYLE2,
-        ItemStyle.STYLE3,
-        ItemStyle.STYLE4,
-        ItemStyle.STYLE5
-    )
+    val itemStyles =
+        listOf(
+            ItemStyle.STYLE1,
+            ItemStyle.STYLE2,
+            ItemStyle.STYLE3,
+            ItemStyle.STYLE4,
+            ItemStyle.STYLE5,
+        )
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
     ) {
-
         Spacer(modifier = Modifier.height(50.dp))
 
         Text(
             text = "Item Style:",
             style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(horizontal = 8.dp)
+            modifier = Modifier.padding(horizontal = 8.dp),
         )
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp),
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 itemStyles.take(3).forEach {
@@ -84,7 +86,7 @@ fun Screen3(navigationItems: List<MainNavigation>) {
             itemSize = navigationItems.size,
             indicatorStyle = if (itemStyle != ItemStyle.STYLE2) IndicatorStyle.FILLED else IndicatorStyle.NONE,
             containerColor = Color.Transparent,
-            indicatorColor = Color.Red.copy(0.5f)
+            indicatorColor = Color.Red.copy(0.5f),
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem
@@ -109,7 +111,7 @@ fun Screen3(navigationItems: List<MainNavigation>) {
             selectedItem = selectedItem,
             itemSize = navigationItems.size,
             indicatorStyle = if (itemStyle != ItemStyle.STYLE2) IndicatorStyle.FILLED else IndicatorStyle.NONE,
-            indicatorColor = Color.White
+            indicatorColor = Color.White,
         ) {
             navigationItems.forEachIndexed { index, navigationItem ->
                 val selected = index == selectedItem

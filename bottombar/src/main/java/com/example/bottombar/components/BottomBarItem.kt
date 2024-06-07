@@ -40,16 +40,17 @@ fun RowScope.BottomBarItem(
     textColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     activeIndicatorColor: Color = MaterialTheme.colorScheme.onPrimaryContainer.copy(0.2f),
     inactiveIndicatorColor: Color = Color.Transparent,
-    glowingBackground: Brush = Brush.radialGradient(
-        listOf(
-            Color.White,
-            Color.Transparent,
-            Color.Transparent
-        )
-    ),
+    glowingBackground: Brush =
+        Brush.radialGradient(
+            listOf(
+                Color.White,
+                Color.Transparent,
+                Color.Transparent,
+            ),
+        ),
     label: String,
     visibleItem: VisibleItem = VisibleItem.ICON,
-    itemStyle: ItemStyle = ItemStyle.STYLE1
+    itemStyle: ItemStyle = ItemStyle.STYLE1,
 ) {
     when (itemStyle) {
         ItemStyle.STYLE1 -> {
@@ -63,7 +64,7 @@ fun RowScope.BottomBarItem(
                 iconColor,
                 textColor,
                 label,
-                visibleItem
+                visibleItem,
             )
         }
 
@@ -78,7 +79,7 @@ fun RowScope.BottomBarItem(
                 textColor,
                 label,
                 activeIndicatorColor,
-                inactiveIndicatorColor
+                inactiveIndicatorColor,
             )
         }
 
@@ -92,7 +93,7 @@ fun RowScope.BottomBarItem(
                 contentColor,
                 iconColor,
                 textColor,
-                label
+                label,
             )
         }
 
@@ -104,7 +105,7 @@ fun RowScope.BottomBarItem(
                 rememberVectorPainter(image = imageVector),
                 containerColor,
                 contentColor,
-                iconColor
+                iconColor,
             )
         }
 
@@ -117,7 +118,7 @@ fun RowScope.BottomBarItem(
                 containerColor,
                 contentColor,
                 iconColor,
-                glowingBackground = glowingBackground
+                glowingBackground = glowingBackground,
             )
         }
     }

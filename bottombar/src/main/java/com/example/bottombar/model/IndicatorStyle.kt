@@ -18,5 +18,5 @@ enum class IndicatorStyle {
     DOT,
     WORM,
     LINE,
-    FILLED
+    FILLED,
 }

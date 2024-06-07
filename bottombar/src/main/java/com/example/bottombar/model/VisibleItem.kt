@@ -14,5 +14,5 @@ package com.example.bottombar.model
 enum class VisibleItem {
     ICON,
     LABEL,
-    BOTH
+    BOTH,
 }

@@ -97,6 +97,7 @@ Scaffold(
                         if (currentRoute != navigationItem.route) {
                             selectedItem = index
                             // ... Navigation Stuff
+                        }
                     },
                     imageVector = navigationItem.icon,
                     label = navigationItem.title,

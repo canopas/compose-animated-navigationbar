@@ -126,7 +126,7 @@ the [Github Issues](https://github.com/canopas/AnimatedBottomBarCompose/issues)
 
 **AnimatedBottomBarCompose** is owned and maintained by the [Canopas team](https://canopas.com/).
 For project updates and releases, you can follow them on X
-at [@canopas_eng](https://x.com/canopas_eng).
+at [@canopassoftware](https://x.com/canopassoftware).
 
 <a href="https://canopas.com/contact"><img src="./cta/cta_btn.png" width=300></a>
 
